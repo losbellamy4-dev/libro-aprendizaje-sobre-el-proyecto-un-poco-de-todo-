@@ -1,7 +1,9 @@
 # Mapa de prerrequisitos y orden de estudio
 
 > Este documento responde a tres preguntas: **¿qué necesito saber antes de cada módulo?**,
+>
 > **¿falta algún prerrequisito en el temario?** y **¿en qué orden conviene estudiar?**
+>
 > Vuelve a él cada vez que empieces un módulo nuevo.
 
 ---
@@ -90,22 +92,22 @@ Una flecha **A ──► B** significa «A es prerrequisito de B». Las líneas 
 
 Estas son las «cadenas» que llevan desde lo que sabes hoy hasta los conceptos centrales de tu investigación. Si un eslabón falla, todo lo que viene después se tambalea.
 
-**Cadena A — De los restos al campo GF(7):**
+**Cadena A — De los restos al campo GF(7):**\
 1.1 (conjuntos de números, operación cerrada) → 1.2 (enteros) → 2.5 (división con resto) → 2.6 (Euclides) → 2.7 (Bézout) → 2.8 (aritmética modular) → 11.5 (clases de restos) → 13.1 (campo) → 13.3 (GF(7)) → 13.4 (inversos).
 
-**Cadena B — Álgebra lineal:**
+**Cadena B — Álgebra lineal:**\
 3.9 (sistemas) → 12.1–12.2 (vectores, combinaciones lineales) → 12.5 (producto de matrices) → 12.7 (Gauss) → 12.8 (rango) → 12.9–12.11 (independencia, base, dimensión) → 13.7–13.9 (lo mismo sobre GF(p)).
 
-**Cadena C — Códigos lineales:**
+**Cadena C — Códigos lineales:**\
 11.3 (palabras como elementos de Aⁿ) → 17.4 (distancia de Hamming) → 17.5 (distancia mínima) → 18.1–18.5 (códigos lineales y matriz generadora) → 19.1–19.4 (peso y cálculo de d) → 20.1–20.6 (G, H, síndromes) → 21 (cotas).
 
-**Cadena D — Programación para investigar:**
+**Cadena D — Programación para investigar:**\
 6.x → 7.1–7.2 (aritmética modular en Python) → 7.4–7.5 (combinaciones y búsqueda exhaustiva) → 7.7–7.9 (aserciones, tests, semillas) → 8.3–8.6 (complejidad y optimización) → 9.x (método experimental) → 24–28 (buscador y validación).
 
-**Cadena E — De los polinomios a los códigos cíclicos:**
+**Cadena E — De los polinomios a los códigos cíclicos:**\
 3.2–3.6 (polinomios) → 15.x (polinomios sobre un campo) → 16.4 (extensiones) → 22.5 (cíclicos) → 22.9 (constacíclicos, cuasicíclicos, cuasitwisted).
 
-**Cadena F — Cotas:**
+**Cadena F — Cotas:**\
 1.4 (⌈x⌉) + 1.5 (potencias) + 4.5 (logaritmos) + 4.7 (Σ) + 5.3 (números combinatorios) → 17.6 (bolas de Hamming) → 21.2–21.5 (Singleton, Hamming, Griesmer, Gilbert–Varshamov).
 
 ---

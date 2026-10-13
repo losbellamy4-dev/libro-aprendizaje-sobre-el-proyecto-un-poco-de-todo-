@@ -1,8 +1,11 @@
 # Capítulo 1.1 — Los conjuntos de números: ℕ, ℤ, ℚ y ℝ
 
 > **Parte I** · Fundamentos matemáticos de ESO · **Módulo 1** · Números y operaciones
+>
 > **Nivel:** 3.º ESO (punto de partida del libro) · **Tipo:** ★ núcleo imprescindible
+>
 > **Tiempo orientativo:** 5–6 sesiones de 45–60 minutos, repartidas en 4 unidades.
+>
 > **Verificación:** todos los cálculos de este capítulo se han comprobado con el programa
 > [`codigo/verificaciones/verificar_cap_1_1.py`](../../../codigo/verificaciones/verificar_cap_1_1.py)
 > (ejecutado con Python 3.13.16 el 12/10/2026: todas las comprobaciones superadas).
@@ -160,20 +163,26 @@ Un conjunto se puede describir **enumerando** sus elementos entre llaves, como {
 ### 4.2. Los cuatro conjuntos de números
 
 > **[DEFINICIÓN 1.3] Números naturales.**
+>
 > **ℕ = {0, 1, 2, 3, 4, …}**
+>
 > Los puntos suspensivos significan «y así sucesivamente, sin fin»: ℕ es infinito.
 
 ⚠️ **Convenio importante.** Algunos libros no incluyen el 0 en ℕ y empiezan en 1. **En este libro el 0 es natural**, porque en informática y en teoría de códigos contamos desde 0 (la palabra de peso 0, la posición 0 de una lista…). Cuando un autor necesita dejar claro que no incluye el 0 suele escribir ℕ* o ℤ⁺ (enteros positivos). **Lección de investigador:** antes de usar un resultado, comprueba siempre qué definiciones usa el autor. Dos libros pueden decir cosas que parecen contradictorias solo porque definen la misma palabra de forma distinta.
 
 > **[DEFINICIÓN 1.4] Números enteros.**
+>
 > **ℤ = {…, −3, −2, −1, 0, 1, 2, 3, …}**
+>
 > Son los naturales junto con sus **opuestos**. El **opuesto** de un número a es el número −a que
 > cumple a + (−a) = 0. El opuesto de 5 es −5; el opuesto de −5 es 5; el opuesto de 0 es 0.
 
 (La letra ℤ viene del alemán *Zahlen*, «números».)
 
 > **[DEFINICIÓN 1.5] Números racionales.**
+>
 > **ℚ = { a/b : a ∈ ℤ, b ∈ ℤ, b ≠ 0 }**
+>
 > Se lee: «ℚ es el conjunto de todos los números de la forma a/b, tales que a es entero, b es entero
 > y b es distinto de cero». En la fracción a/b, a es el **numerador** y b el **denominador**.
 
@@ -186,6 +195,7 @@ Tres aclaraciones imprescindibles:
 (La letra ℚ viene de *quotient*, «cociente».)
 
 > **[DEFINICIÓN 1.6] Números reales e irracionales.**
+>
 > Un **número real** es cualquier número que se puede escribir con una **expresión decimal**, finita
 > o infinita, con signo. Cada número real corresponde a **un punto** de la recta numérica, y cada
 > punto de la recta corresponde a un número real. El conjunto de los números reales se llama **ℝ**.
@@ -276,8 +286,8 @@ Fíjate en que la demostración **no usa ningún ejemplo concreto**: funciona pa
 > racional. En concreto, si a < b son racionales, su **punto medio** (a + b)/2 es racional y cumple
 > a < (a + b)/2 < b.
 
-*Demostración.* (a + b)/2 es racional porque es una suma de racionales dividida entre 2 (Propiedad 1.2). Además:
-(a + b)/2 − a = (b − a)/2, que es positivo porque b − a > 0. Luego a < (a + b)/2.
+*Demostración.* (a + b)/2 es racional porque es una suma de racionales dividida entre 2 (Propiedad 1.2). Además:\
+(a + b)/2 − a = (b − a)/2, que es positivo porque b − a > 0. Luego a < (a + b)/2.\
 b − (a + b)/2 = (b − a)/2 > 0. Luego (a + b)/2 < b. ∎
 
 **Consecuencia:** entre dos racionales distintos hay **infinitos** racionales (aplica el punto medio una y otra vez). Compáralo con ℤ: entre 3 y 4 **no hay ningún** entero.
@@ -316,17 +326,19 @@ Si en algún momento el resto es 0, la división termina: **decimal exacto**. Si
 **Conclusión de las Propiedades 1.4 y 1.6:**
 
 > Un número es **racional** ⟺ su expresión decimal es **exacta o periódica**.
+>
 > Un número es **irracional** ⟺ su expresión decimal es **infinita y no periódica**.
 
 (El símbolo ⟺ se lee «si y solo si» y significa que cada lado implica el otro.)
 
 > **[OBSERVACIÓN 1.1 — demostrada] 0,(9) = 1.**
 
-*Demostración.* Sea x = 0,999… Entonces 10x = 9,999… Restando, 10x − x = 9,999… − 0,999… = 9, es decir, 9x = 9, luego x = 1. ∎
-**Segunda comprobación:** 1/3 = 0,333…; multiplicando por 3, 3 · (1/3) = 1 y 3 · 0,333… = 0,999… Luego 0,999… = 1.
+*Demostración.* Sea x = 0,999… Entonces 10x = 9,999… Restando, 10x − x = 9,999… − 0,999… = 9, es decir, 9x = 9, luego x = 1. ∎\
+**Segunda comprobación:** 1/3 = 0,333…; multiplicando por 3, 3 · (1/3) = 1 y 3 · 0,333… = 0,999… Luego 0,999… = 1.\
 No es que 0,(9) esté «muy cerca» de 1: **es** 1. Simplemente, el número 1 tiene dos expresiones decimales. (La división larga nunca produce el periodo 9; lo verás en el ejercicio B3.)
 
 > **[TEOREMA 1.1] √2 es irracional.** No existe ninguna fracción a/b tal que (a/b)² = 2.
+>
 > *Demostración completa en la Ampliación A, al final del capítulo (es opcional en esta primera
 > lectura; el método, «reducción al absurdo», se estudia en el capítulo 10.7).*
 
@@ -429,7 +441,7 @@ Cada número real es un punto de la recta. Los racionales están «por todas par
   cada uno nace        exacto / periódico     contraejemplo (1 basta
   para resolver        / no periódico         para refutar) frente a
   una operación             │                 demostración (hace falta
-  que fallaba          racional ⟺ exacto       para afirmar «siempre»)
+  que fallaba          racional ⇔ exacto       para afirmar «siempre»)
                        o periódico                 │
                             │                      ▼
                             ▼              [AVANCE] conjunto FINITO
@@ -475,9 +487,14 @@ Cada número real es un punto de la recta. Los racionales están «por todas par
 **F9. Fracción generatriz de un decimal periódico** (regla clásica, que se deduce de la Propiedad 1.6):
 
 ```
-             (número sin coma hasta el final del primer periodo) − (número sin coma hasta el final del anteperiodo)
-      x  =  ────────────────────────────────────────────────────────────────────────────────────────────────────────
-                 tantos 9 como cifras tiene el PERIODO, seguidos de tantos 0 como cifras tiene el ANTEPERIODO
+             N₁ − N₂
+     x  =  ─────────────
+            99…9 00…0
+
+  N₁ = número escrito sin coma hasta el final del PRIMER PERIODO
+  N₂ = número escrito sin coma hasta el final del ANTEPERIODO
+  99…9 00…0 = tantos 9 como cifras tiene el periodo,
+              seguidos de tantos 0 como cifras tiene el anteperiodo
 ```
 
 - Ejemplo periódico mixto: 1,2(3) → numerador 123 − 12 = 111; denominador 90 (un 9 por la cifra del periodo, un 0 por la del anteperiodo) → 111/90 = 37/30.
@@ -493,6 +510,7 @@ Cada número real es un punto de la recta. Los racionales están «por todas par
 ## 7. Ejemplo básico resuelto paso a paso
 
 > **[EJEMPLO 1.1] Clasifica los siguientes números en ℕ, ℤ, ℚ, 𝕀 y ℝ:**
+>
 > 7;  −3;  0;  2/5;  −12/4;  0,75;  0,(6);  √9;  √5;  π;  −√16;  1,0100100010000… (cada vez hay un 0 más entre dos unos).
 
 **Estrategia.** Para cada número: (1) **simplifícalo** todo lo posible; (2) recorre el árbol de decisión de §5.2.
@@ -535,6 +553,7 @@ Cada número real es un punto de la recta. Los racionales están «por todas par
 ## 8. Ejemplo intermedio resuelto paso a paso
 
 > **[EJEMPLO 1.2]** (a) Predice, **sin dividir**, qué tipo de decimal dan 7/40, 5/12 y 3/7.
+>
 > (b) Haz las divisiones y comprueba tu predicción. (c) Partiendo **solo de los decimales**,
 > recupera las fracciones. (d) Comprueba que coinciden con las originales.
 
@@ -639,9 +658,13 @@ Hemos recuperado exactamente 7/40, 5/12 y 3/7 ✓. Además, una comprobación in
 ## 9. Ejemplo avanzado aplicado a tu investigación
 
 > **[EJEMPLO 1.3] ¿En qué «mundo de números» viven los códigos sobre GF(7)?**
+>
 > (a) ¿Por qué un programa de investigación **no** debe usar decimales del ordenador?
+>
 > (b) ¿Es el conjunto {0, 1, 2, 3, 4, 5, 6} cerrado para la suma y el producto habituales?
+>
 > (c) ¿Qué pasa si operamos «con reloj de 7»? ¿Y «con reloj de 6»?
+>
 > (d) ¿Qué conclusión sacamos para tu proyecto?
 
 ### (a) El ordenador y los decimales
@@ -666,7 +689,7 @@ print((4 + 5) % 7)            # suma "con reloj de 7": resto de dividir 9 entre 
 print((3 * 5) % 7)            # producto "con reloj de 7": resto de dividir 15 entre 7
 ```
 
-**Entrada:** ninguna (el programa no pide datos).
+**Entrada:** ninguna (el programa no pide datos).\
 **Salida obtenida** al ejecutarlo realmente (Python 3.13.16, 12/10/2026):
 
 ```
@@ -825,32 +848,32 @@ Aquí pasan dos cosas «raras»: 2 ⊗ 3 = 6 → resto **0**: ¡dos números dis
 
 ### Nivel A — Comprender y aplicar directamente las definiciones
 
-**A1.** Clasifica en una tabla como la del Ejemplo 1.1 (ℕ, ℤ, ℚ, 𝕀, ℝ):
+**A1.** Clasifica en una tabla como la del Ejemplo 1.1 (ℕ, ℤ, ℚ, 𝕀, ℝ):\
 a) −8  b) 15/3  c) −2/7  d) 0,125  e) 0,(12)  f) √25  g) √10  h) −√36/3  i) 3,141592  j) 0,123456789101112… (se escriben seguidos todos los naturales a partir del 1).
 
-**A2.** Verdadero o falso. Justifica las verdaderas; da un contraejemplo de las falsas.
-a) Todo número natural es entero.
-b) Todo número entero es natural.
-c) −5 ∈ ℕ.
-d) ℤ ⊂ ℚ.
-e) 0 ∈ ℚ.
-f) Todo número con infinitas cifras decimales es irracional.
-g) √2 ∈ ℚ.
+**A2.** Verdadero o falso. Justifica las verdaderas; da un contraejemplo de las falsas.\
+a) Todo número natural es entero.\
+b) Todo número entero es natural.\
+c) −5 ∈ ℕ.\
+d) ℤ ⊂ ℚ.\
+e) 0 ∈ ℚ.\
+f) Todo número con infinitas cifras decimales es irracional.\
+g) √2 ∈ ℚ.\
 h) Existe un número que es a la vez racional e irracional.
 
 **A3.** Para cada fracción, **predice sin dividir** el tipo de decimal (exacto, periódico puro o mixto) y después **divide** para comprobarlo: 3/8;  7/9;  13/6;  9/25;  4/11.
 
-**A4.** Halla la fracción generatriz irreducible y **comprueba dividiendo**:
+**A4.** Halla la fracción generatriz irreducible y **comprueba dividiendo**:\
 a) 0,45  b) 0,(5)  c) 2,(18)  d) 0,3(12)  e) 1,0(6).
 
-**A5.** Ordena de menor a mayor y sitúa aproximadamente en una recta numérica:
+**A5.** Ordena de menor a mayor y sitúa aproximadamente en una recta numérica:\
 −2,5;  7/4;  −√4;  0,(3);  −3/2;  1,7.
 
-**A6.** Decide si cada afirmación es verdadera o falsa. Si es falsa, da un contraejemplo; si es verdadera, explica por qué es verdad **en todos los casos**.
-a) El producto de dos naturales es natural.
-b) La resta de dos naturales es natural.
-c) El cociente de dos enteros (con divisor no nulo) es entero.
-d) La suma de dos racionales es racional.
+**A6.** Decide si cada afirmación es verdadera o falsa. Si es falsa, da un contraejemplo; si es verdadera, explica por qué es verdad **en todos los casos**.\
+a) El producto de dos naturales es natural.\
+b) La resta de dos naturales es natural.\
+c) El cociente de dos enteros (con divisor no nulo) es entero.\
+d) La suma de dos racionales es racional.\
 e) La suma de dos irracionales es irracional.
 
 ### Nivel B — Combinar conceptos y resolver problemas nuevos
@@ -863,10 +886,10 @@ e) La suma de dos irracionales es irracional.
 
 **B4.** (a) Sin dividir, justifica que el periodo de 1/13 tiene como mucho 12 cifras. (b) Calcula 1/13 anotando todos los restos y halla la longitud real de su periodo. (c) ¿Contradice el resultado de (b) lo que dijiste en (a)? Explica la diferencia entre una **cota** y un **valor exacto**.
 
-**B5.** Un compañero escribe: «He programado un ordenador que ha comprobado que ninguna fracción a/b con denominador b entre 1 y 1000 cumple (a/b)² = 2. Por tanto, √2 es irracional.»
+**B5.** Un compañero escribe: «He programado un ordenador que ha comprobado que ninguna fracción a/b con denominador b entre 1 y 1000 cumple (a/b)² = 2. Por tanto, √2 es irracional.»\
 (a) ¿Es verdadera su conclusión? (b) ¿Es válido su razonamiento? (c) ¿Qué ha conseguido realmente con su programa?
 
-**B6.** Para cada ecuación, di cuál es el **conjunto más pequeño** (ℕ, ℤ, ℚ o ℝ) en el que tiene alguna solución, y cuál es esa solución:
+**B6.** Para cada ecuación, di cuál es el **conjunto más pequeño** (ℕ, ℤ, ℚ o ℝ) en el que tiene alguna solución, y cuál es esa solución:\
 a) x + 9 = 4  b) 3x = 5  c) 5x = 35  d) x² = 9  e) x² = 7  f) 2x + 3 = 0.
 
 ### Nivel C — Investigación: formular hipótesis, comprobar y justificar
@@ -887,27 +910,27 @@ a) x + 9 = 4  b) 3x = 5  c) 5x = 35  d) x² = 9  e) x² = 7  f) 2x + 3 = 0.
 
 ### Problemas de aplicación práctica
 
-**P1. Ascensores y temperaturas.**
-a) Un ascensor sube de la planta −3 (garaje) a la planta 5. ¿Cuántas plantas ha subido? Después baja de la planta 4 a la −2: expresa ese cambio de planta con un número entero.
-b) A las 6:00 un termómetro marca −4,5 °C y la temperatura sube 0,75 °C cada hora de forma constante. ¿A qué hora marcará 0 °C? ¿Qué temperatura marcará a las 14:00?
+**P1. Ascensores y temperaturas.**\
+a) Un ascensor sube de la planta −3 (garaje) a la planta 5. ¿Cuántas plantas ha subido? Después baja de la planta 4 a la −2: expresa ese cambio de planta con un número entero.\
+b) A las 6:00 un termómetro marca −4,5 °C y la temperatura sube 0,75 °C cada hora de forma constante. ¿A qué hora marcará 0 °C? ¿Qué temperatura marcará a las 14:00?\
 c) ¿Qué conjuntos de números has necesitado y por qué?
 
-**P2. Céntimos y ordenadores.**
-Una aplicación de una tienda suma precios.
-a) Suma a mano 0,10 € diez veces.
-b) Un programa que suma 0.1 diez veces, **una a una**, muestra `0.9999999999999999`. Explica por qué, usando lo aprendido en el Ejemplo 1.3.
-c) Propón una forma de evitar el problema trabajando **solo con números enteros**, y úsala para sumar estos precios: 2,35 €; 0,99 €; 12,10 €; 0,56 €.
+**P2. Céntimos y ordenadores.**\
+Una aplicación de una tienda suma precios.\
+a) Suma a mano 0,10 € diez veces.\
+b) Un programa que suma 0.1 diez veces, **una a una**, muestra `0.9999999999999999`. Explica por qué, usando lo aprendido en el Ejemplo 1.3.\
+c) Propón una forma de evitar el problema trabajando **solo con números enteros**, y úsala para sumar estos precios: 2,35 €; 0,99 €; 12,10 €; 0,56 €.\
 d) ¿Qué tiene que ver esto con tu investigación sobre GF(7)?
 
 ### Problema combinado
 
 Como este es el primer capítulo, este problema combina lo aprendido aquí con lo que ya sabes de cursos anteriores (división con resto y fracciones). En los capítulos siguientes, el problema combinado mezclará capítulos del libro.
 
-**PC. El calendario y los restos.** Hoy es lunes.
-a) ¿Qué día de la semana será dentro de 23 días?
-b) ¿Y dentro de 100 días?
-c) ¿Qué día de la semana fue hace 10 días? Resuélvelo de dos formas distintas.
-d) Explica por qué, para responder, solo importa el **resto** de dividir entre 7.
+**PC. El calendario y los restos.** Hoy es lunes.\
+a) ¿Qué día de la semana será dentro de 23 días?\
+b) ¿Y dentro de 100 días?\
+c) ¿Qué día de la semana fue hace 10 días? Resuélvelo de dos formas distintas.\
+d) Explica por qué, para responder, solo importa el **resto** de dividir entre 7.\
 e) Expresa 100 días en semanas como número decimal. ¿Qué relación hay entre la parte decimal y el resto del apartado b)?
 
 ---
@@ -946,13 +969,13 @@ e) Expresa 100 días en semanas como número decimal. ¿Qué relación hay entre
 <details>
 <summary>▶ Solución A2</summary>
 
-a) **Verdadero.** Por definición, ℤ contiene a todos los naturales (Prop. 1.1).
-b) **Falso.** Contraejemplo: −1 ∈ ℤ pero −1 ∉ ℕ.
-c) **Falso.** −5 es negativo; los naturales son 0, 1, 2, …
-d) **Verdadero.** Todo entero n se escribe n/1, con denominador 1 ≠ 0.
-e) **Verdadero.** 0 = 0/1.
-f) **Falso.** Contraejemplo: 1/3 = 0,333… tiene infinitas cifras y es racional.
-g) **Falso.** Teorema 1.1: √2 es irracional.
+a) **Verdadero.** Por definición, ℤ contiene a todos los naturales (Prop. 1.1).\
+b) **Falso.** Contraejemplo: −1 ∈ ℤ pero −1 ∉ ℕ.\
+c) **Falso.** −5 es negativo; los naturales son 0, 1, 2, …\
+d) **Verdadero.** Todo entero n se escribe n/1, con denominador 1 ≠ 0.\
+e) **Verdadero.** 0 = 0/1.\
+f) **Falso.** Contraejemplo: 1/3 = 0,333… tiene infinitas cifras y es racional.\
+g) **Falso.** Teorema 1.1: √2 es irracional.\
 h) **Falso.** Por la Definición 1.6, irracional significa «real que **no** es racional»: no se pueden cumplir las dos cosas a la vez.
 
 </details>
@@ -1011,10 +1034,10 @@ Comprobación de las comparaciones delicadas: −2,5 < −2 porque −2 − (−
 <details>
 <summary>▶ Solución A6</summary>
 
-a) **Verdadera.** Multiplicar naturales es sumar repetidamente naturales (3 · 4 = 4 + 4 + 4), y sumar naturales da un natural; además n · 0 = 0 ∈ ℕ.
-b) **Falsa.** Contraejemplo: 2 − 5 = −3 ∉ ℕ.
-c) **Falsa.** Contraejemplo: 1 : 2 = 1/2 ∉ ℤ.
-d) **Verdadera** para **todos** los casos: es la Propiedad 1.2. a/b + c/d = (a·d + c·b)/(b·d), con numerador entero y denominador entero no nulo.
+a) **Verdadera.** Multiplicar naturales es sumar repetidamente naturales (3 · 4 = 4 + 4 + 4), y sumar naturales da un natural; además n · 0 = 0 ∈ ℕ.\
+b) **Falsa.** Contraejemplo: 2 − 5 = −3 ∉ ℕ.\
+c) **Falsa.** Contraejemplo: 1 : 2 = 1/2 ∉ ℤ.\
+d) **Verdadera** para **todos** los casos: es la Propiedad 1.2. a/b + c/d = (a·d + c·b)/(b·d), con numerador entero y denominador entero no nulo.\
 e) **Falsa.** Contraejemplo: √2 y −√2 son irracionales, pero √2 + (−√2) = 0 ∈ ℚ.
    ¿Por qué −√2 es irracional? Si fuera −√2 = a/b, entonces √2 = (−a)/b sería racional, lo que contradice el Teorema 1.1.
 
@@ -1023,7 +1046,7 @@ e) **Falsa.** Contraejemplo: √2 y −√2 son irracionales, pero √2 + (−�
 <details>
 <summary>▶ Solución B1</summary>
 
-**Punto medio:** (3/7 + 4/9)/2. Denominador común 63: 3/7 = 27/63 y 4/9 = 28/63. Suma: 55/63. Mitad: **55/126**.
+**Punto medio:** (3/7 + 4/9)/2. Denominador común 63: 3/7 = 27/63 y 4/9 = 28/63. Suma: 55/63. Mitad: **55/126**.\
 Comprobación con denominador 126: 3/7 = 54/126 y 4/9 = 56/126, y 54 < 55 < 56 ✓.
 
 **Tres más:** usamos un denominador mayor para «hacer sitio». Con 504 (= 63 · 8): 3/7 = 216/504 y 4/9 = 224/504. Entre 216 y 224 hay 217, 218, …, 223. Por ejemplo: **217/504, 218/504 = 109/252, 219/504 = 73/168**.
@@ -1052,11 +1075,11 @@ Las trampas son 21/56 (el 7 «desaparece» al simplificar) y 35/42 (parece tener
 <details>
 <summary>▶ Solución B3</summary>
 
-(a) **Método 1 (restar):** x = 0,999…, 10x = 9,999…, 9x = 9, x = 1.
-**Método 2 (fracciones):** 1/3 = 0,333…; multiplicando por 3: 1 = 0,999…
+(a) **Método 1 (restar):** x = 0,999…, 10x = 9,999…, 9x = 9, x = 1.\
+**Método 2 (fracciones):** 1/3 = 0,333…; multiplicando por 3: 1 = 0,999…\
 (También: con la regla F9, 0,(9) = 9/9 = 1.)
 
-(b) x = 0,4999…; 10x = 4,999…; 100x = 49,999…; 90x = 45; **x = 1/2 = 0,5**.
+(b) x = 0,4999…; 10x = 4,999…; 100x = 49,999…; 90x = 45; **x = 1/2 = 0,5**.\
 x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 
 (c) Un decimal que termina en «(9)» es otra forma de escribir un decimal exacto: 0,4(9) = 0,5 y 2,(9) = 3. **Algunos números tienen dos expresiones decimales** (los decimales exactos distintos de 0). Por eso, por convenio, se usa la forma sin «(9)».
@@ -1090,8 +1113,8 @@ x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 <details>
 <summary>▶ Solución B5</summary>
 
-(a) **Sí**, la conclusión es verdadera: √2 es irracional (Teorema 1.1).
-(b) **No**, el razonamiento no es válido. Hay **infinitos** denominadores posibles; comprobar hasta 1000 no dice nada sobre b = 1001, b = 10⁹ o cualquier otro. Sería como decir «he mirado 1000 cajones y no he encontrado la llave, así que la llave no existe».
+(a) **Sí**, la conclusión es verdadera: √2 es irracional (Teorema 1.1).\
+(b) **No**, el razonamiento no es válido. Hay **infinitos** denominadores posibles; comprobar hasta 1000 no dice nada sobre b = 1001, b = 10⁹ o cualquier otro. Sería como decir «he mirado 1000 cajones y no he encontrado la llave, así que la llave no existe».\
 (c) Ha conseguido **evidencia computacional** (un resultado verificado por programa en un número finito de casos), que hace la afirmación creíble, pero no la demuestra. La demostración de verdad es la de la Ampliación A, que funciona para **todos** los denominadores a la vez.
 
 **Conexión con tu investigación:** si un programa examina un millón de palabras de un código y no encuentra ninguna de peso menor que 5, eso **no** demuestra que la distancia mínima sea 5, salvo que haya examinado **todas** las palabras (o que exista una demostración). Esta diferencia separa una evidencia de un récord demostrado (Módulos 25 y 28).
@@ -1101,11 +1124,11 @@ x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 <details>
 <summary>▶ Solución B6</summary>
 
-a) x = 4 − 9 = −5 → **ℤ** (no hay solución en ℕ).
-b) x = 5/3 → **ℚ** (3 no divide a 5: no hay solución entera).
-c) x = 35/5 = 7 → **ℕ**.
-d) x = 3 o x = −3. Como 3 ∈ ℕ → **ℕ**.
-e) x = √7 o x = −√7, irracionales (7 no es cuadrado perfecto) → **ℝ**.
+a) x = 4 − 9 = −5 → **ℤ** (no hay solución en ℕ).\
+b) x = 5/3 → **ℚ** (3 no divide a 5: no hay solución entera).\
+c) x = 35/5 = 7 → **ℕ**.\
+d) x = 3 o x = −3. Como 3 ∈ ℕ → **ℕ**.\
+e) x = √7 o x = −√7, irracionales (7 no es cuadrado perfecto) → **ℝ**.\
 f) 2x = −3, x = −3/2 → **ℚ**.
 
 </details>
@@ -1169,8 +1192,8 @@ f) 2x = −3, x = −3/2 → **ℚ**.
 
 **[VERIFICADO POR PROGRAMA]** Para n de 2 a 11, los valores en los que todos tienen pareja son exactamente 2, 3, 5, 7 y 11, los primos.
 
-**¿Por qué falla si n no es primo?** Si n = a · b con a y b entre 2 y n − 1, entonces a ⊗ b = 0 (el resto de dividir n entre n es 0). Supongamos que a tuviera pareja c, con a ⊗ c = 1. Entonces, operando con el reloj de n:
-b = b ⊗ 1 = b ⊗ (a ⊗ c) = (b ⊗ a) ⊗ c = 0 ⊗ c = 0,
+**¿Por qué falla si n no es primo?** Si n = a · b con a y b entre 2 y n − 1, entonces a ⊗ b = 0 (el resto de dividir n entre n es 0). Supongamos que a tuviera pareja c, con a ⊗ c = 1. Entonces, operando con el reloj de n:\
+b = b ⊗ 1 = b ⊗ (a ⊗ c) = (b ⊗ a) ⊗ c = 0 ⊗ c = 0,\
 pero b está entre 2 y n − 1, así que no es 0. **Contradicción:** a no puede tener pareja. (Este argumento usa que ⊗ se puede reagrupar y cambiar de orden igual que la multiplicación normal; lo justificaremos en el capítulo 2.8.)
 
 **La otra mitad** (si n es primo, todos tienen pareja) necesita la *identidad de Bézout* (capítulo 2.7) y se demostrará en el Módulo 13. Por ahora, es una **conjetura bien apoyada** para ti, aunque sea un teorema conocido.
@@ -1182,8 +1205,8 @@ pero b está entre 2 y n − 1, así que no es 0. **Contradicción:** a no puede
 
 a) De −3 a 5: 5 − (−3) = 5 + 3 = **8 plantas**. De 4 a −2: el cambio es −2 − 4 = **−6** (6 plantas hacia abajo).
 
-b) Le faltan 4,5 °C para llegar a 0. A 0,75 °C por hora: 4,5 : 0,75 = 450 : 75 = **6 horas** → a las **12:00**.
-A las 14:00 han pasado 8 horas: −4,5 + 8 · 0,75 = −4,5 + 6 = **1,5 °C**.
+b) Le faltan 4,5 °C para llegar a 0. A 0,75 °C por hora: 4,5 : 0,75 = 450 : 75 = **6 horas** → a las **12:00**.\
+A las 14:00 han pasado 8 horas: −4,5 + 8 · 0,75 = −4,5 + 6 = **1,5 °C**.\
 Comprobación: a las 12:00 está a 0 °C y en 2 horas más sube 2 · 0,75 = 1,5 °C ✓.
 
 c) **ℤ** para las plantas bajo tierra y las temperaturas bajo cero (restas como 5 − 8 sin solución en ℕ); **ℚ** (decimales exactos) para 4,5 y 0,75; **ℕ** para contar horas.
@@ -1291,10 +1314,10 @@ Si fallas una pregunta, el problema está en el concepto indicado. Vuelve a la s
 
 ### Ejercicios de refuerzo
 
-**RF1.** Clasifica: −20/5;  0,0(5);  √50;  √0,25;  3/1.
-**RF2.** Fracción generatriz y comprobación: 0,1(6);  3,(7);  0,(142857).
-**RF3.** Sin dividir, predice el tipo de decimal y después compruébalo dividiendo: 11/16;  7/15;  5/33.
-**RF4.** Da un contraejemplo de cada afirmación: (a) «El cociente de dos naturales (divisor no nulo) es natural.» (b) «El producto de dos irracionales es irracional.» (c) «Todo número negativo es entero.»
+**RF1.** Clasifica: −20/5;  0,0(5);  √50;  √0,25;  3/1.\
+**RF2.** Fracción generatriz y comprobación: 0,1(6);  3,(7);  0,(142857).\
+**RF3.** Sin dividir, predice el tipo de decimal y después compruébalo dividiendo: 11/16;  7/15;  5/33.\
+**RF4.** Da un contraejemplo de cada afirmación: (a) «El cociente de dos naturales (divisor no nulo) es natural.» (b) «El producto de dos irracionales es irracional.» (c) «Todo número negativo es entero.»\
 **RF5.** Ordena de menor a mayor: −0,(3);  −1/4;  −0,3;  −0,33.
 
 (Soluciones en el anexo final.)
@@ -1388,7 +1411,7 @@ El ordenador guarda solo 53 cifras binarias significativas (en el formato habitu
 
 **D1 ★.** −7/7 = −1 → ℤ (y ℚ, ℝ; no ℕ). √49/2 = 7/2 → ℚ (no ℤ). 0,1(23) → periódico → ℚ. √3 → 3 no es cuadrado perfecto → 𝕀. −0,5 = −1/2 → ℚ (no ℤ).
 
-**D2 ★.** x = 0,2777…; 10x = 2,777…; 100x = 27,777…; 100x − 10x = 25 → 90x = 25 → x = 25/90 = **5/18**. (Regla F9: (27 − 2)/90 = 25/90 ✓.)
+**D2 ★.** x = 0,2777…; 10x = 2,777…; 100x = 27,777…; 100x − 10x = 25 → 90x = 25 → x = 25/90 = **5/18**. (Regla F9: (27 − 2)/90 = 25/90 ✓.)\
 Comprobación: 50 = 2·18 + 14; 140 = 7·18 + 14 → el resto 14 se repite → 0,2(7) ✓.
 
 **D3.** 7/20: 20 = 2²·5 → **exacto** (0,35). 5/6: 6 = 2·3 → **periódico mixto** (0,8(3)). 2/9: 9 = 3² → **periódico puro** (0,(2)). 15/48 = 5/16 (¡simplificar!): 16 = 2⁴ → **exacto** (0,3125).

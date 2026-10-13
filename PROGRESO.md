@@ -36,6 +36,7 @@ El índice completo, con enlaces, está en [`libro/00-indice-general.md`](libro/
 | **Próximo capítulo a redactar** | 1.2 — Números enteros: signos, valor absoluto, orden y jerarquía de operaciones |
 | **Documentos de apoyo creados** | Índice general · Mapa de prerrequisitos · Cómo estudiar este libro · Glosario · Hoja de fórmulas · Errores frecuentes · Bibliografía · Este registro |
 | **Código creado** | `codigo/verificaciones/verificar_cap_1_1.py` · `codigo/ejemplos/cap_1_1_rincon_del_ordenador.py` |
+| **Versiones descargables** | `descargas/libro-gf7-entrega-1.pdf`, `.html` y `-fuentes.zip`, generadas con `herramientas/construir_libro.py` (13/10/2026). |
 | **Verificaciones ejecutadas** | `verificar_cap_1_1.py` con Python 3.13.16 el 12/10/2026: **todas las comprobaciones superadas** (incluida la comprobación del criterio del denominador en 124 750 fracciones). |
 
 ### Entregas
@@ -43,6 +44,7 @@ El índice completo, con enlaces, está en [`libro/00-indice-general.md`](libro/
 | Entrega | Fecha | Contenido |
 |---|---|---|
 | 1 | 12/10/2026 | Índice general completo, mapa de prerrequisitos, sistema de estudio, apéndices iniciales, **capítulo 1.1 completo** con verificación por programa. |
+| 1 (descargas) | 13/10/2026 | Primeras versiones descargables (PDF, HTML, ZIP) con todo lo redactado en la Entrega 1. |
 | 2 (prevista) | — | Capítulos 1.2 y 1.3 (enteros; fracciones). |
 | 3 (prevista) | — | Capítulos 1.4 y 1.5 (decimales y partes enteras; potencias). |
 | 4 (prevista) | — | Capítulos 1.6–1.8 y Repaso R1. |
@@ -91,13 +93,15 @@ El índice completo, con enlaces, está en [`libro/00-indice-general.md`](libro/
 | D11 | Criterio de dominio: ≥ 8/10 y todas las preguntas ★; «prueba de salto» con ≥ 9/10. | Progresar por comprensión demostrada, no por capítulos leídos; no hacer perder tiempo con lo ya sabido. |
 | D12 | Marcas ★ (núcleo) y ◇ (ampliación) en el índice. | Indicar qué es imprescindible para el proyecto y qué es extensión. |
 | D13 | Cada referencia bibliográfica lleva su estado de verificación. | No inventar ni dar por comprobadas fuentes que no se han comprobado. |
+| D14 | Versiones descargables (PDF, HTML de un solo archivo y ZIP) generadas automáticamente desde el Markdown con `herramientas/construir_libro.py` en cada entrega. | Poder estudiar sin conexión y en papel sin mantener copias a mano que se desincronicen. |
+| D15 | En el Markdown, las líneas que deben verse separadas (apartados a), b)…, enunciado y datos) terminan en «\\» (salto de línea forzado), y los recuadros de definición separan título, fórmula y explicación en párrafos. | Que se lean igual de bien en GitHub, en el HTML y en el PDF. |
 
 ---
 
 ## 5. Registro de aprendizaje (lo rellenas tú)
 
-**Último capítulo dominado:** — (ninguno todavía)
-**Capítulo que estoy estudiando:** 1.1
+**Último capítulo dominado:** — (ninguno todavía)\
+**Capítulo que estoy estudiando:** 1.1\
 **Próximo capítulo a estudiar:** 1.1 → después 1.2
 
 ### 5.1. Estado por capítulo

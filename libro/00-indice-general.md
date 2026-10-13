@@ -29,6 +29,7 @@
 - [Registro de progreso](../PROGRESO.md)
 - Apéndices: [Glosario](../apendices/glosario.md) · [Hoja de fórmulas](../apendices/hoja-de-formulas.md) · [Errores frecuentes](../apendices/errores-frecuentes.md) · [Bibliografía](../apendices/bibliografia.md)
 - [Código del libro](../codigo/README.md) (programas de verificación y ejemplos)
+- **Descargas:** el libro en PDF, HTML y ZIP en la carpeta `descargas/` del repositorio (ver el [README](../README.md)).
 
 ---
 

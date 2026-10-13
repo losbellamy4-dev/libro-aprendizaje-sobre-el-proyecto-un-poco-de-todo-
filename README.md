@@ -15,6 +15,18 @@ El punto de partida es **3.º de ESO** (Andalucía). Cada concepto se explica de
 3. Empieza por el **[Capítulo 1.1 — Los conjuntos de números: ℕ, ℤ, ℚ y ℝ](libro/parte-1-fundamentos-eso/modulo-01-numeros-y-operaciones/cap-1-1-conjuntos-de-numeros.md)**.
 4. Anota tu avance en **[PROGRESO.md](PROGRESO.md)**.
 
+## Descargar el libro
+
+En la carpeta [`descargas/`](descargas/) tienes todo lo escrito hasta ahora en tres formatos:
+
+| Archivo | Para qué sirve |
+|---|---|
+| [`libro-gf7-entrega-1.pdf`](descargas/libro-gf7-entrega-1.pdf) | Leer en el móvil, la tableta o imprimir. Las soluciones aparecen desplegadas en recuadros (tápalas antes de intentar cada ejercicio). |
+| [`libro-gf7-entrega-1.html`](descargas/libro-gf7-entrega-1.html) | Un solo archivo que se abre con cualquier navegador, sin conexión. Las soluciones están plegadas y se despliegan con un clic. |
+| [`libro-gf7-entrega-1-fuentes.zip`](descargas/libro-gf7-entrega-1-fuentes.zip) | Todo el repositorio: textos en Markdown, programas de Python, PDF y HTML. |
+
+Las descargas se regeneran con cada entrega mediante `python3 herramientas/construir_libro.py --entrega N --fecha DD/MM/AAAA` (necesita pandoc y Chromium).
+
 ## Estructura del libro
 
 | Parte | Contenido | Módulos |
@@ -49,6 +61,9 @@ codigo/
   README.md
   ejemplos/                ← pequeños programas que aparecen en los capítulos
   verificaciones/          ← programas que recalculan los resultados de cada capítulo
+descargas/                 ← el libro en PDF, HTML y ZIP
+herramientas/
+  construir_libro.py       ← genera las descargas a partir de los textos
 ```
 
 ## Verificar los cálculos
