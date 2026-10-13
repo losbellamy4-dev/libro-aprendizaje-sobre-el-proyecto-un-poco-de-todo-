@@ -35,8 +35,8 @@
 | **[EJEMPLO]** | Un caso concreto. Un ejemplo ilustra, pero no demuestra una afirmación general. |
 | **[AVANCE]** | Idea de un capítulo futuro. No se exige dominarla todavía. |
 
-> 📌 **Las soluciones están plegadas.** En GitHub aparecen como «▶ Ver solución»: pulsa solo
-> cuando hayas intentado el ejercicio por tu cuenta. Las respuestas de la prueba de dominio
+> 📌 **Las soluciones están plegadas.** En GitHub aparecen como recuadros cerrados con un triángulo
+> (por ejemplo, «Solución A1»): ábrelos solo cuando hayas intentado el ejercicio por tu cuenta. Las respuestas de la prueba de dominio
 > están en el **anexo final** del capítulo.
 
 ---
@@ -83,7 +83,7 @@ Responde sin calculadora. Si fallas **dos o más**, repasa esos puntos con tu li
 6. Escribe 0,25 como fracción.
 
 <details>
-<summary>▶ Ver respuestas de la comprobación rápida</summary>
+<summary>Ver respuestas de la comprobación rápida</summary>
 
 1. 9, porque 9 · 4 = 36.
 2. Resto 2, porque 47 = 9 · 5 + 2 y 2 < 5.
@@ -943,7 +943,7 @@ e) Expresa 100 días en semanas como número decimal. ¿Qué relación hay entre
 > ejercicio parecido.
 
 <details>
-<summary>▶ Solución A1</summary>
+<summary>Solución A1</summary>
 
 | | Número | Simplificado / razonamiento | ℕ | ℤ | ℚ | 𝕀 | ℝ |
 |---|---|---|:-:|:-:|:-:|:-:|:-:|
@@ -967,7 +967,7 @@ e) Expresa 100 días en semanas como número decimal. ¿Qué relación hay entre
 </details>
 
 <details>
-<summary>▶ Solución A2</summary>
+<summary>Solución A2</summary>
 
 a) **Verdadero.** Por definición, ℤ contiene a todos los naturales (Prop. 1.1).\
 b) **Falso.** Contraejemplo: −1 ∈ ℤ pero −1 ∉ ℕ.\
@@ -981,7 +981,7 @@ h) **Falso.** Por la Definición 1.6, irracional significa «real que **no** es 
 </details>
 
 <details>
-<summary>▶ Solución A3</summary>
+<summary>Solución A3</summary>
 
 Todas son irreducibles (compruébalo: numerador y denominador no tienen divisores comunes).
 
@@ -998,7 +998,7 @@ Todas son irreducibles (compruébalo: numerador y denominador no tienen divisore
 </details>
 
 <details>
-<summary>▶ Solución A4</summary>
+<summary>Solución A4</summary>
 
 a) **0,45** = 45/100 = **9/20** (dividiendo entre 5). Comprobación: 9/20 = 45/100 = 0,45 ✓.
 
@@ -1013,7 +1013,7 @@ e) x = 1,0666…; 10x = 10,666…; 100x = 106,666…; 100x − 10x = 96 → 90x 
 </details>
 
 <details>
-<summary>▶ Solución A5</summary>
+<summary>Solución A5</summary>
 
 Pasamos todo a decimal: −2,5; 7/4 = 1,75; −√4 = −2; 0,(3) = 0,333…; −3/2 = −1,5; 1,7.
 
@@ -1032,7 +1032,7 @@ Comprobación de las comparaciones delicadas: −2,5 < −2 porque −2 − (−
 </details>
 
 <details>
-<summary>▶ Solución A6</summary>
+<summary>Solución A6</summary>
 
 a) **Verdadera.** Multiplicar naturales es sumar repetidamente naturales (3 · 4 = 4 + 4 + 4), y sumar naturales da un natural; además n · 0 = 0 ∈ ℕ.\
 b) **Falsa.** Contraejemplo: 2 − 5 = −3 ∉ ℕ.\
@@ -1044,7 +1044,7 @@ e) **Falsa.** Contraejemplo: √2 y −√2 son irracionales, pero √2 + (−�
 </details>
 
 <details>
-<summary>▶ Solución B1</summary>
+<summary>Solución B1</summary>
 
 **Punto medio:** (3/7 + 4/9)/2. Denominador común 63: 3/7 = 27/63 y 4/9 = 28/63. Suma: 55/63. Mitad: **55/126**.\
 Comprobación con denominador 126: 3/7 = 54/126 y 4/9 = 56/126, y 54 < 55 < 56 ✓.
@@ -1056,7 +1056,7 @@ Comprobación con denominador 126: 3/7 = 54/126 y 4/9 = 56/126, y 54 < 55 < 56 �
 </details>
 
 <details>
-<summary>▶ Solución B2</summary>
+<summary>Solución B2</summary>
 
 **Simplificar primero** (Error E9):
 
@@ -1073,7 +1073,7 @@ Las trampas son 21/56 (el 7 «desaparece» al simplificar) y 35/42 (parece tener
 </details>
 
 <details>
-<summary>▶ Solución B3</summary>
+<summary>Solución B3</summary>
 
 (a) **Método 1 (restar):** x = 0,999…, 10x = 9,999…, 9x = 9, x = 1.\
 **Método 2 (fracciones):** 1/3 = 0,333…; multiplicando por 3: 1 = 0,999…\
@@ -1089,7 +1089,7 @@ x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 </details>
 
 <details>
-<summary>▶ Solución B4</summary>
+<summary>Solución B4</summary>
 
 (a) Al dividir entre 13 los restos posibles son 0, 1, …, 12. Si en algún momento saliera el resto 0, la división terminaría y no habría periodo. Si no sale, solo quedan 12 restos posibles (1, …, 12) y, por la Propiedad 1.4, el periodo tiene **como mucho 12 cifras**.
 
@@ -1111,7 +1111,7 @@ x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 </details>
 
 <details>
-<summary>▶ Solución B5</summary>
+<summary>Solución B5</summary>
 
 (a) **Sí**, la conclusión es verdadera: √2 es irracional (Teorema 1.1).\
 (b) **No**, el razonamiento no es válido. Hay **infinitos** denominadores posibles; comprobar hasta 1000 no dice nada sobre b = 1001, b = 10⁹ o cualquier otro. Sería como decir «he mirado 1000 cajones y no he encontrado la llave, así que la llave no existe».\
@@ -1122,7 +1122,7 @@ x = 2,999…; 10x = 29,999…; 9x = 27; **x = 3**.
 </details>
 
 <details>
-<summary>▶ Solución B6</summary>
+<summary>Solución B6</summary>
 
 a) x = 4 − 9 = −5 → **ℤ** (no hay solución en ℕ).\
 b) x = 5/3 → **ℚ** (3 no divide a 5: no hay solución entera).\
@@ -1134,7 +1134,7 @@ f) 2x = −3, x = −3/2 → **ℚ**.
 </details>
 
 <details>
-<summary>▶ Solución C1</summary>
+<summary>Solución C1</summary>
 
 **Datos** (1/13 ya lo calculaste en B4; 1/7 tiene un periodo de la misma longitud que el de 3/7, calculado en el Ejemplo 1.2):
 
@@ -1159,7 +1159,7 @@ f) 2x = −3, x = −3/2 → **ℚ**.
 </details>
 
 <details>
-<summary>▶ Solución C2</summary>
+<summary>Solución C2</summary>
 
 **Tablas** (solo filas y columnas 1 a n − 1, porque el 0 nunca tiene pareja: 0 ⊗ b = 0):
 
@@ -1201,7 +1201,7 @@ pero b está entre 2 y n − 1, así que no es 0. **Contradicción:** a no puede
 </details>
 
 <details>
-<summary>▶ Solución P1</summary>
+<summary>Solución P1</summary>
 
 a) De −3 a 5: 5 − (−3) = 5 + 3 = **8 plantas**. De 4 a −2: el cambio es −2 − 4 = **−6** (6 plantas hacia abajo).
 
@@ -1214,7 +1214,7 @@ c) **ℤ** para las plantas bajo tierra y las temperaturas bajo cero (restas com
 </details>
 
 <details>
-<summary>▶ Solución P2</summary>
+<summary>Solución P2</summary>
 
 a) 10 · 0,10 = **1,00 €**.
 
@@ -1231,7 +1231,7 @@ d) Es la misma idea: en GF(7) **todo son enteros** (0, …, 6) y los resultados 
 </details>
 
 <details>
-<summary>▶ Solución PC</summary>
+<summary>Solución PC</summary>
 
 Numeramos: lunes = 0, martes = 1, miércoles = 2, jueves = 3, viernes = 4, sábado = 5, domingo = 6.
 
@@ -1393,7 +1393,7 @@ El ordenador guarda solo 53 cifras binarias significativas (en el formato habitu
 > ⚠️ No abras este anexo hasta haber hecho la prueba de dominio completa.
 
 <details>
-<summary>▶ Respuestas modelo de las preguntas de comprensión (§15)</summary>
+<summary>Respuestas modelo de las preguntas de comprensión (§15)</summary>
 
 1. Porque ℚ es cerrado para la división (Prop. 1.2): el cociente de dos fracciones (divisor no nulo) es otra fracción. Pero hay raíces, como √2, cuyo valor no es ninguna fracción (Teorema 1.1). Para tenerlas hace falta ampliar hasta ℝ.
 2. No. 1/3 = 0,333… tiene infinitas cifras y es racional. Lo que caracteriza a los irracionales es ser infinitos **y no periódicos**.
@@ -1407,7 +1407,7 @@ El ordenador guarda solo 53 cifras binarias significativas (en el formato habitu
 </details>
 
 <details>
-<summary>▶ Soluciones de la prueba de dominio (§16)</summary>
+<summary>Soluciones de la prueba de dominio (§16)</summary>
 
 **D1 ★.** −7/7 = −1 → ℤ (y ℚ, ℝ; no ℕ). √49/2 = 7/2 → ℚ (no ℤ). 0,1(23) → periódico → ℚ. √3 → 3 no es cuadrado perfecto → 𝕀. −0,5 = −1/2 → ℚ (no ℤ).
 
@@ -1433,7 +1433,7 @@ Comprobación: 50 = 2·18 + 14; 140 = 7·18 + 14 → el resto 14 se repite → 0
 </details>
 
 <details>
-<summary>▶ Soluciones de los ejercicios de refuerzo</summary>
+<summary>Soluciones de los ejercicios de refuerzo</summary>
 
 **RF1.** −20/5 = −4 → ℤ. 0,0(5) → periódico → ℚ (es 1/18). √50 → 49 < 50 < 64, no es cuadrado perfecto → 𝕀. √0,25 = 0,5, porque 0,5 · 0,5 = 0,25 → ℚ (no ℤ). 3/1 = 3 → ℕ.
 

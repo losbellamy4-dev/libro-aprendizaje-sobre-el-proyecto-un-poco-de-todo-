@@ -232,7 +232,7 @@
   <style>
   :root { --tinta:#1d2430; --suave:#5b6474; --acento:#1f5fa8; --fondo-codigo:#f4f6f9;
           --borde:#d5dbe3; --caja:#f3f7fd; --aviso:#fff8e6; }
-  html { font-size: 11pt; }
+  html { font-size: 16px; }
   body { font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif; color: var(--tinta);
          line-height: 1.5; max-width: 52em; margin: 0 auto; padding: 1.5em 1.2em 4em;
          background: #fff; hyphens: auto; }
@@ -252,8 +252,12 @@
   pre { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; background: var(--fondo-codigo);
         border: 1px solid var(--borde); border-radius: 6px; padding: .7em .8em; line-height: 1.25;
         overflow-x: auto; white-space: pre; }
-  pre code { background: none; padding: 0; font-size: 1em; }
-  div.sourceCode { margin: 1em 0; }
+  pre code, pre > code, pre > code.sourceCode { background: none; padding: 0; font-size: 1em;
+         white-space: pre !important; overflow-wrap: normal; word-break: normal; }
+  pre { font-size: .82em; }
+  div.sourceCode { margin: 1em 0; overflow: visible !important; background: none; }
+  pre.sourceCode { overflow-x: auto !important; margin: 0; }
+  pre > code.sourceCode > span { text-indent: 0 !important; padding-left: 0 !important; }
   pre a { color: inherit; }
   table { border-collapse: collapse; margin: 1em 0; font-size: .92em; width: auto; max-width: 100%; }
   th, td { border: 1px solid var(--borde); padding: .3em .55em; vertical-align: top; }
@@ -264,7 +268,12 @@
   details { border: 1px solid var(--borde); border-radius: 6px; margin: .8em 0; padding: .2em .9em;
             background: #fcfcfd; }
   details[open] { padding-bottom: .6em; }
-  summary { cursor: pointer; font-weight: bold; color: var(--acento); padding: .35em 0; }
+  summary { cursor: pointer; font-weight: bold; color: var(--acento); padding: .35em 0;
+            list-style: none; display: block; }
+  summary::-webkit-details-marker { display: none; }
+  summary::marker { content: ""; }
+  summary::before { content: "▶ "; font-size: .85em; }
+  details[open] > summary::before { content: "▼ "; }
   hr { border: none; border-top: 1px solid var(--borde); margin: 2em 0; }
   nav#TOC { border: 1px solid var(--borde); border-radius: 8px; padding: .5em 1.2em 1em; background: #fbfcfe; }
   nav#TOC > ul { padding-left: 1em; }
@@ -279,9 +288,29 @@
   .portada-caja { text-align: left; margin: 2.5em auto 1.5em; max-width: 36em; background: var(--caja);
          border: 1px solid var(--borde); border-radius: 10px; padding: .6em 1.4em; }
   .portada-pie { color: var(--suave); font-size: .85em; margin-top: 2em; }
-  .boton-soluciones { position: fixed; right: 1em; bottom: 1em; background: var(--acento); color: #fff;
-         border: none; border-radius: 20px; padding: .6em 1em; font-size: .9em; cursor: pointer;
-         box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+  .boton-soluciones { position: fixed; right: .8em; bottom: .8em; background: var(--acento); color: #fff;
+         border: none; border-radius: 20px; padding: .55em .95em; font-size: .85em; cursor: pointer;
+         box-shadow: 0 2px 6px rgba(0,0,0,.25); opacity: .9; }
+  .boton-corto { display: none; }
+  @media screen and (max-width: 600px) {
+    body { font-size: 1em; padding: 1em .9em 4em; }
+    h1 { font-size: 1.6em; }
+    .portada-titulo { font-size: 2em; }
+    table { display: block; overflow-x: auto; font-size: .82em;
+      background:
+        linear-gradient(to right, #fff 30%, rgba(255,255,255,0)),
+        linear-gradient(to right, rgba(255,255,255,0), #fff 70%) 100% 0,
+        radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.22), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.22), rgba(0,0,0,0)) 100% 0;
+      background-repeat: no-repeat;
+      background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+      background-attachment: local, local, scroll, scroll; }
+    th, td { padding: .2em .35em; }
+    tr:nth-child(even) td { background: transparent; }
+    .boton-soluciones { opacity: .8; padding: .45em .8em; }
+    .boton-largo { display: none; }
+    .boton-corto { display: inline; }
+  }
 
   @media print {
     html { font-size: 10pt; }
@@ -290,10 +319,12 @@
     h1 { break-before: page; }
     .portada { break-after: page; padding-top: 6em; }
     .portada-titulo { break-before: avoid; }
-    nav#TOC { break-after: page; border: none; background: none; padding: 0; }
+    nav#TOC { border: none; background: none; padding: 0; }
     details { break-inside: auto; }
-    summary { list-style: none; }
-    summary::-webkit-details-marker { display: none; }
+    summary { break-after: avoid; }
+    .no-partir { break-inside: avoid; }
+    pre > code.sourceCode { white-space: pre !important; }
+    pre > code.sourceCode > span { text-indent: 0 !important; padding-left: 0 !important; display: inline; }
     .boton-soluciones { display: none; }
     a { color: var(--acento); }
   }
@@ -338,7 +369,7 @@
 <section class="portada">
   <p class="portada-serie">Curso-libro de estudio</p>
   <h1 class="portada-titulo">Matemáticas, programación<br>y teoría de códigos</h1>
-  <p class="portada-sub">De 3.º de ESO a la investigación sobre<br>códigos lineales sobre GF(7)</p>
+  <p class="portada-sub">De 3.º de ESO a la investigación<br>sobre códigos lineales sobre GF(7)</p>
   <div class="portada-caja">
     <p><b>Edición: Entrega 1</b> · generada el 13/10/2026</p>
     <p><b>Estado del libro:</b> 1 de 286 capítulos redactados. Este documento contiene
@@ -346,7 +377,7 @@
        el mapa de prerrequisitos, el sistema de estudio, los capítulos redactados, los apéndices
        (glosario, fórmulas, errores frecuentes, bibliografía), el registro de progreso y el código
        de verificación. Los capítulos pendientes se añadirán en las próximas entregas.</p>
-    <p>En esta versión <b>HTML</b> las soluciones están <b>plegadas</b>: pulsa «▶ Ver solución» solo después de intentar cada ejercicio. Funciona sin conexión a Internet.</p>
+    <p>En esta versión <b>HTML</b> las soluciones están <b>plegadas</b> en recuadros «▶ Solución A1», «▶ Solución A2»…: púlsalos solo después de intentar cada ejercicio. Funciona sin conexión a Internet.</p>
   </div>
   <p class="portada-pie">Redactado con ayuda de una IA (Claude, de Anthropic). Todos los cálculos
      se comprueban con los programas del apéndice de código.</p>
@@ -610,8 +641,7 @@ id="toc-codigoverificacionesverificar_cap_1_1py"><code>codigo/verificaciones/ver
 </ul></li>
 </ul>
 </nav>
-<p><a id="doc-README"></a></p>
-<h1 id="matemáticas-programación-y-teoría-de-códigos">Matemáticas,
+<h1 id="matemáticas-programación-y-teoría-de-códigos"><a id="doc-README"></a>Matemáticas,
 programación y teoría de códigos</h1>
 <h3
 id="un-curso-libro-progresivo-de-3º-de-eso-a-la-investigación-sobre-códigos-lineales-sobre-gf7">Un
@@ -647,7 +677,7 @@ href="#doc-PROGRESO">PROGRESO.md</a></strong>.</li>
 <h2 id="descargar-el-libro">Descargar el libro</h2>
 <p>En la carpeta <code>descargas/</code> tienes todo lo escrito hasta
 ahora en tres formatos:</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Archivo</th>
@@ -677,7 +707,7 @@ HTML.</td>
 <code>python3 herramientas/construir_libro.py --entrega N --fecha DD/MM/AAAA</code>
 (necesita pandoc y Chromium).</p>
 <h2 id="estructura-del-libro">Estructura del libro</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Parte</th>
@@ -731,7 +761,7 @@ capítulos), mapa de prerrequisitos, sistema de estudio, apéndices
 iniciales y <strong>capítulo 1.1 completo</strong>. El detalle está en
 <a href="#doc-PROGRESO">PROGRESO.md</a>.</p>
 <h2 id="organización-del-repositorio">Organización del repositorio</h2>
-<pre class="pre-1"><code>README.md                  ← este archivo
+<pre class="no-partir pre-1"><code>README.md                  ← este archivo
 PROGRESO.md                ← registro de redacción y de aprendizaje
 libro/
   00-indice-general.md
@@ -751,7 +781,7 @@ herramientas/
   construir_libro.py       ← genera las descargas a partir de los textos</code></pre>
 <h2 id="verificar-los-cálculos">Verificar los cálculos</h2>
 <p>Solo hace falta Python 3 (sin bibliotecas externas):</p>
-<pre class="pre-2"><code>python3 codigo/verificaciones/verificar_cap_1_1.py</code></pre>
+<pre class="no-partir pre-2"><code>python3 codigo/verificaciones/verificar_cap_1_1.py</code></pre>
 <h2 id="sobre-la-autoría-y-el-uso-de-ia">Sobre la autoría y el uso de
 IA</h2>
 <p>El texto de este libro se ha redactado con ayuda de una IA (Claude,
@@ -761,8 +791,7 @@ incluidos en <code>codigo/verificaciones/</code>, y cada referencia
 bibliográfica indica si se ha podido verificar. Si encuentras un error,
 anótalo: detectar errores (también los de una IA) es una de las
 habilidades que este libro quiere enseñar.</p>
-<p><a id="doc-libro-00-como-estudiar-este-libro"></a></p>
-<h1 id="cómo-estudiar-este-libro">Cómo estudiar este libro</h1>
+<h1 id="cómo-estudiar-este-libro"><a id="doc-libro-00-como-estudiar-este-libro"></a>Cómo estudiar este libro</h1>
 <blockquote>
 <p><strong>Idea central:</strong> completar un capítulo no es lo mismo
 que dominarlo. Este libro está diseñado para que avances <strong>solo
@@ -771,7 +800,7 @@ leer.</p>
 </blockquote>
 <hr />
 <h2 id="1-el-ciclo-de-cada-capítulo">1. El ciclo de cada capítulo</h2>
-<pre class="pre-3"><code>  ┌─────────────────────────────────────────────────────────────────────────┐
+<pre class="no-partir pre-3"><code>  ┌─────────────────────────────────────────────────────────────────────────┐
   │ 0. Comprobación rápida de prerrequisitos (§2)                           │
   │        │ ¿fallas 2 o más? ──► vuelve al capítulo indicado               │
   │        ▼                                                                │
@@ -790,10 +819,11 @@ leer.</p>
 <ul>
 <li>Estudia con <strong>papel y lápiz</strong>. Las matemáticas se
 aprenden haciendo, no leyendo.</li>
-<li>Las soluciones están <strong>plegadas</strong> (en GitHub aparecen
-como «▶ Ver solución»). Ábrelas solo después de intentarlo de verdad.
-Equivocarse y descubrir por qué es la parte del estudio que más
-enseña.</li>
+<li>Las soluciones están <strong>plegadas</strong> (en GitHub y en la
+versión HTML aparecen como recuadros cerrados con un triángulo, por
+ejemplo «Solución A1»; en el PDF aparecen abiertos, y conviene taparlos
+con un papel). Ábrelas solo después de intentarlo de verdad. Equivocarse
+y descubrir por qué es la parte del estudio que más enseña.</li>
 <li>Lleva un <strong>cuaderno de errores</strong>: para cada error,
 escribe (1) qué hiciste, (2) por qué estaba mal, (3) qué concepto
 fallaba, (4) un ejercicio parecido resuelto bien.</li>
@@ -803,7 +833,7 @@ de estudiar: así compruebas lo que recuerdas de verdad.</li>
 <hr />
 <h2 id="2-los-tres-niveles-de-ejercicios">2. Los tres niveles de
 ejercicios</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Nivel</th>
@@ -866,7 +896,7 @@ rápido por la Parte I sin saltarse lagunas.</p>
 <h2 id="4-repaso-espaciado">4. Repaso espaciado</h2>
 <p>Lo que no se repasa se olvida. Calendario recomendado para cada
 capítulo dominado:</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Cuándo</th>
@@ -899,7 +929,7 @@ corrección a tu tutor (o a una IA)</h2>
 <p>Las soluciones del libro muestran <strong>una</strong> forma
 correcta, pero no pueden ver <strong>tu</strong> razonamiento. Cuando
 quieras que te corrijan, envía:</p>
-<pre class="pre-4"><code>Capítulo: 1.1      Ejercicio: A4 d)
+<pre class="no-partir pre-4"><code>Capítulo: 1.1      Ejercicio: A4 d)
 Mi respuesta: 0,3(12) = 312/990 = 52/165
 Mi razonamiento: multipliqué por 1000 y resté…
 Duda concreta: no sé por qué no coincide al dividir.</code></pre>
@@ -914,7 +944,7 @@ también se equivocan (lo estudiarás a fondo en el capítulo 28.7).</p>
 afirmaciones: aprende a distinguirlas</h2>
 <p>En todo el libro, cada afirmación lleva una etiqueta. Esta distinción
 es la base del trabajo científico:</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Etiqueta</th>
@@ -1017,8 +1047,7 @@ camino (a mano, con otro programa o con una fuente fiable).</li>
 <li>En tu investigación, <strong>registra</strong> qué partes ha hecho
 una IA y cuáles tú (capítulo 31.9).</li>
 </ul>
-<p><a id="doc-libro-00-indice-general"></a></p>
-<h1 id="índice-general-del-libro">Índice general del libro</h1>
+<h1 id="índice-general-del-libro"><a id="doc-libro-00-indice-general"></a>Índice general del libro</h1>
 <p><strong>Matemáticas, programación y teoría de códigos: de 3.º de ESO
 a la investigación sobre códigos lineales sobre GF(7)</strong></p>
 <blockquote>
@@ -1031,7 +1060,7 @@ El estado actualizado está siempre en <a
 href="#doc-PROGRESO"><code>PROGRESO.md</code></a>.</p>
 </blockquote>
 <h2 id="leyenda">Leyenda</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Marca</th>
@@ -1056,7 +1085,7 @@ prerrequisito que faltaba (justificación en el mapa de
 prerrequisitos).</td>
 </tr>
 <tr class="even">
-<td>✅ / ⏳</td>
+<td>✅ / ⏳</td>
 <td>Redactado / pendiente de redactar.</td>
 </tr>
 <tr class="odd">
@@ -1646,7 +1675,7 @@ Módulo 9)</li>
 </ul>
 <hr />
 <h2 id="tamaño-del-plan">Tamaño del plan</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Parte</th>
@@ -1721,22 +1750,20 @@ salto</strong> (ver <a
 href="#doc-libro-00-como-estudiar-este-libro">Cómo estudiar este
 libro</a>); los de laboratorio son más cortos en teoría y más largos en
 código.</p>
-<p><a id="doc-libro-00-mapa-de-prerrequisitos"></a></p>
-<h1 id="mapa-de-prerrequisitos-y-orden-de-estudio">Mapa de
+<h1 id="mapa-de-prerrequisitos-y-orden-de-estudio"><a id="doc-libro-00-mapa-de-prerrequisitos"></a>Mapa de
 prerrequisitos y orden de estudio</h1>
 <blockquote>
 <p>Este documento responde a tres preguntas: <strong>¿qué necesito saber
-antes de cada módulo?</strong>,</p>
-<p><strong>¿falta algún prerrequisito en el temario?</strong> y
-<strong>¿en qué orden conviene estudiar?</strong></p>
-<p>Vuelve a él cada vez que empieces un módulo nuevo.</p>
+antes de cada módulo?</strong>, <strong>¿falta algún prerrequisito en el
+temario?</strong> y <strong>¿en qué orden conviene estudiar?</strong>
+Vuelve a él cada vez que empieces un módulo nuevo.</p>
 </blockquote>
 <hr />
 <h2 id="1-mapa-general-de-módulos">1. Mapa general de módulos</h2>
 <p>Una flecha <strong>A ──► B</strong> significa «A es prerrequisito de
 B». Las líneas punteadas (┄) indican prerrequisitos recomendados pero no
 imprescindibles.</p>
-<pre class="pre-5"><code> PARTE I (ESO)                    PARTE II (PROGRAMACIÓN)
+<pre class="no-partir pre-5"><code> PARTE I (ESO)                    PARTE II (PROGRAMACIÓN)
  ─────────────                    ───────────────────────
  M1 Números ──► M2 Divisibilidad ──────────────► M6 Python ──► M7 Prog. matemática
   │                │                                             │
@@ -2178,7 +2205,7 @@ de estudio es <strong>pedagógico</strong>: intercala matemáticas y
 programación para que pronto puedas experimentar, y llega a los códigos
 sobre GF(7) <strong>antes</strong> de estudiar los campos de extensión
 (que tu proyecto actual no necesita).</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Etapa</th>
@@ -2261,8 +2288,7 @@ repasa ese punto y sigue.</li>
 <li>Si fallas <strong>dos o más</strong>: vuelve al capítulo indicado y
 repite su prueba de dominio antes de continuar.</li>
 </ul>
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros"></a></p>
-<h1 id="capítulo-11--los-conjuntos-de-números-ℕ-ℤ-ℚ-y-ℝ">Capítulo 1.1 —
+<h1 id="capítulo-11--los-conjuntos-de-números-ℕ-ℤ-ℚ-y-ℝ"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros"></a>Capítulo 1.1 —
 Los conjuntos de números: ℕ, ℤ, ℚ y ℝ</h1>
 <blockquote>
 <p><strong>Parte I</strong> · Fundamentos matemáticos de ESO ·
@@ -2280,7 +2306,7 @@ superadas).</p>
 <hr />
 <h2 id="cómo-está-organizado-este-capítulo">Cómo está organizado este
 capítulo</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Unidad</th>
@@ -2324,7 +2350,7 @@ capítulo</h2>
 </table>
 <p><strong>Etiquetas que verás en todo el libro</strong> (para
 distinguir siempre qué tipo de afirmación es cada cosa):</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Etiqueta</th>
@@ -2376,13 +2402,13 @@ afirmación general.</td>
 </table>
 <blockquote>
 <p>📌 <strong>Las soluciones están plegadas.</strong> En GitHub aparecen
-como «▶ Ver solución»: pulsa solo cuando hayas intentado el ejercicio
-por tu cuenta. Las respuestas de la prueba de dominio están en el
-<strong>anexo final</strong> del capítulo.</p>
+como recuadros cerrados con un triángulo (por ejemplo, «Solución A1»):
+ábrelos solo cuando hayas intentado el ejercicio por tu cuenta. Las
+respuestas de la prueba de dominio están en el <strong>anexo
+final</strong> del capítulo.</p>
 </blockquote>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s1"></a></p>
-<h2 id="1-título-y-objetivos">1. Título y objetivos</h2>
+<h2 id="1-título-y-objetivos"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s1"></a>1. Título y objetivos</h2>
 <p><strong>Título:</strong> Los conjuntos de números: naturales (ℕ),
 enteros (ℤ), racionales (ℚ) y reales (ℝ).</p>
 <p>Al terminar este capítulo serás capaz de:</p>
@@ -2410,8 +2436,7 @@ solo con números enteros.</li>
 multiplicar y dividir: la semilla de GF(7).</li>
 </ol>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s2"></a></p>
-<h2 id="2-prerrequisitos">2. Prerrequisitos</h2>
+<h2 id="2-prerrequisitos"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s2"></a>2. Prerrequisitos</h2>
 <p>Este es el primer capítulo, así que solo necesitas lo que se aprende
 en Primaria y en 1.º–2.º de ESO:</p>
 <ul>
@@ -2441,7 +2466,7 @@ detalle.</p>
 <li>Escribe 0,25 como fracción.</li>
 </ol>
 <details>
-<summary>▶ Ver respuestas de la comprobación rápida</summary>
+<summary>Ver respuestas de la comprobación rápida</summary>
 
 <ol type="1">
 <li>9, porque 9 · 4 = 36.</li>
@@ -2469,8 +2494,7 @@ se pueden escribir con cualquier teclado y en un programa.</li>
 se escribe con el guion «-».</li>
 </ul>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s3"></a></p>
-<h2 id="3-explicación-intuitiva">3. Explicación intuitiva</h2>
+<h2 id="3-explicación-intuitiva"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s3"></a>3. Explicación intuitiva</h2>
 <h3
 id="31-la-historia-de-los-números-es-una-historia-de-problemas-sin-respuesta">3.1.
 La historia de los números es una historia de problemas sin
@@ -2506,7 +2530,7 @@ longitud, √2, no es racional. Para que <strong>toda longitud</strong>
 tenga un número, se completan los racionales con los
 <strong>irracionales</strong> (√2, π, …). El conjunto completo son los
 <strong>números reales</strong>, ℝ.</p>
-<pre class="pre-6"><code>   PROBLEMA SIN RESPUESTA                       SOLUCIÓN: AMPLIAR EL CONJUNTO
+<pre class="no-partir pre-6"><code>   PROBLEMA SIN RESPUESTA                       SOLUCIÓN: AMPLIAR EL CONJUNTO
    ──────────────────────                       ─────────────────────────────
    5 − 8 = ?   (no cabe en ℕ)        ──────►    ℤ  = ℕ + los negativos
    7 : 2 = ?   (no cabe en ℤ)        ──────►    ℚ  = ℤ + las fracciones
@@ -2543,8 +2567,7 @@ aprenderás a reconocer cuándo un número tiene expresión decimal finita y
 cuándo no, y por qué en tu proyecto solo se usarán <strong>números
 enteros</strong>, con los que el ordenador es exacto.</p>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s4"></a></p>
-<h2 id="4-definiciones-formales">4. Definiciones formales</h2>
+<h2 id="4-definiciones-formales"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s4"></a>4. Definiciones formales</h2>
 <h3 id="41-un-poco-de-lenguaje-de-conjuntos">4.1. Un poco de lenguaje de
 conjuntos</h3>
 <blockquote>
@@ -2712,7 +2735,7 @@ cumple…» es <strong>un caso concreto</strong> en el que la afirmación
 <strong>falla</strong>.</p>
 </blockquote>
 <p>La regla de oro (la estudiarás a fondo en el Módulo 10):</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Para demostrar que una afirmación «para todo…» es…</th>
@@ -2753,7 +2776,7 @@ real. ∎</li>
 <p>(El símbolo ∎ marca el final de una demostración.)</p>
 <blockquote>
 <p><strong>[PROPIEDAD 1.2 — demostrada] Tabla de cierre.</strong></p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Conjunto</th>
@@ -2950,12 +2973,11 @@ herramientas universitarias y no la veremos. Por eso <strong>π no es
 aproximaciones de π.</p>
 </blockquote>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s5"></a></p>
-<h2 id="5-esquema-visual-y-mapa-conceptual">5. Esquema visual y mapa
+<h2 id="5-esquema-visual-y-mapa-conceptual"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s5"></a>5. Esquema visual y mapa
 conceptual</h2>
 <h3 id="51-los-conjuntos-unos-dentro-de-otros">5.1. Los conjuntos, unos
 dentro de otros</h3>
-<pre class="pre-7"><code>┌──────────────────────────────── ℝ  (reales) ─────────────────────────────────┐
+<pre class="no-partir pre-7"><code>┌──────────────────────────────── ℝ  (reales) ─────────────────────────────────┐
 │                                                                              │
 │  ┌────────────────────── ℚ  (racionales) ─────────────────┐  IRRACIONALES    │
 │  │                                                        │                  │
@@ -2974,7 +2996,7 @@ de ℝ pero <strong>fuera</strong> de ℚ: un número no puede ser a la vez
 racional e irracional.</p>
 <h3 id="52-árbol-de-decisión-qué-tipo-de-número-es">5.2. Árbol de
 decisión: ¿qué tipo de número es?</h3>
-<pre class="pre-8"><code>            ¿Se puede escribir como fracción a/b con a, b enteros y b ≠ 0?
+<pre class="no-partir pre-8"><code>            ¿Se puede escribir como fracción a/b con a, b enteros y b ≠ 0?
                     │                                    │
                    SÍ                                   NO
                     │                                    │
@@ -2994,7 +3016,7 @@ decisión: ¿qué tipo de número es?</h3>
       NATURAL (está en ℕ, y por tanto en ℤ, ℚ y ℝ)</code></pre>
 <h3 id="53-árbol-de-decisión-qué-decimal-dará-la-fracción-ab">5.3. Árbol
 de decisión: ¿qué decimal dará la fracción a/b?</h3>
-<pre class="pre-9"><code>     Simplifica a/b hasta que sea irreducible (¡siempre lo primero!)
+<pre class="no-partir pre-9"><code>     Simplifica a/b hasta que sea irreducible (¡siempre lo primero!)
                                │
              Descompón el denominador b en factores primos
                                │
@@ -3005,7 +3027,7 @@ de decisión: ¿qué decimal dará la fracción a/b?</h3>
  DECIMAL EXACTO        PERIÓDICO PURO              PERIÓDICO MIXTO
  ej.: 7/40 = 0,175     ej.: 3/7 = 0,(428571)       ej.: 5/12 = 0,41(6)</code></pre>
 <h3 id="54-la-recta-numérica">5.4. La recta numérica</h3>
-<pre class="pre-10"><code>   −3      −2      −1       0       1       2
+<pre class="no-partir pre-10"><code>   −3      −2      −1       0       1       2
 ────┼───────┼───────┼───────┼───────┼───────┼────►
         ▲       ▲              ▲       ▲  ▲
         │       │              │       │  └──── 7/4 = 1,75
@@ -3018,7 +3040,7 @@ todas partes» (Propiedad 1.3), pero <strong>no la llenan</strong>: entre
 ellos quedan los irracionales, como √2.</p>
 <h3 id="55-mapa-conceptual-del-capítulo">5.5. Mapa conceptual del
 capítulo</h3>
-<pre class="pre-11"><code>                         NÚMEROS
+<pre class="no-partir pre-11"><code>                         NÚMEROS
                             │
       ┌─────────────────────┼──────────────────────┐
       ▼                     ▼                      ▼
@@ -3037,8 +3059,7 @@ capítulo</h3>
                      (float) ──► en GF(7)
                      solo enteros exactos</code></pre>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s6"></a></p>
-<h2 id="6-fórmulas-importantes-símbolo-a-símbolo">6. Fórmulas
+<h2 id="6-fórmulas-importantes-símbolo-a-símbolo"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s6"></a>6. Fórmulas
 importantes, símbolo a símbolo</h2>
 <p><strong>F1. Definición de ℚ:</strong> ℚ = { a/b : a, b ∈ ℤ, b ≠ 0
 }</p>
@@ -3086,7 +3107,7 @@ racionales, m también.</li>
 </ul>
 <p><strong>F9. Fracción generatriz de un decimal periódico</strong>
 (regla clásica, que se deduce de la Propiedad 1.6):</p>
-<pre class="pre-12"><code>             N₁ − N₂
+<pre class="no-partir pre-12"><code>             N₁ − N₂
      x  =  ─────────────
             99…9 00…0
 
@@ -3112,8 +3133,7 @@ b − 1</p>
 exacto. 1/13 tiene periodo 6, y 6 ≤ 12.</li>
 </ul>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s7"></a></p>
-<h2 id="7-ejemplo-básico-resuelto-paso-a-paso">7. Ejemplo básico
+<h2 id="7-ejemplo-básico-resuelto-paso-a-paso"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s7"></a>7. Ejemplo básico
 resuelto paso a paso</h2>
 <blockquote>
 <p><strong>[EJEMPLO 1.1] Clasifica los siguientes números en ℕ, ℤ, ℚ, 𝕀
@@ -3293,8 +3313,7 @@ pueden estar marcados a la vez</strong>, y <strong>ℝ siempre</strong>
 está marcado. Revisa la tabla fila a fila: se cumple en todas. Si en tu
 tabla alguna fila rompe la escalera, hay un error seguro.</p>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s8"></a></p>
-<h2 id="8-ejemplo-intermedio-resuelto-paso-a-paso">8. Ejemplo intermedio
+<h2 id="8-ejemplo-intermedio-resuelto-paso-a-paso"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s8"></a>8. Ejemplo intermedio
 resuelto paso a paso</h2>
 <blockquote>
 <p><strong>[EJEMPLO 1.2]</strong> (a) Predice, <strong>sin
@@ -3310,7 +3329,7 @@ primo y no divide a 12). 3 y 7 son primos distintos. Las tres son
 irreducibles.</p>
 <p><strong>Paso 2: factorizar los denominadores y aplicar la Propiedad
 1.5.</strong></p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fracción</th>
@@ -3348,7 +3367,7 @@ resto. <strong>Vigilar los restos</strong> es la clave: cuando uno se
 repite, empieza la repetición.</p>
 <p><strong>7 : 40.</strong> Como 7 &lt; 40, la parte entera es 0 y el
 primer resto es 7.</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Paso</th>
@@ -3384,7 +3403,7 @@ primer resto es 7.</p>
 </table>
 <p>7/40 = <strong>0,175</strong>. Decimal exacto ✓.</p>
 <p><strong>5 : 12.</strong> Parte entera 0, primer resto 5.</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Paso</th>
@@ -3422,7 +3441,7 @@ primer resto es 7.</p>
 5/12 = 0,41666… = <strong>0,41(6)</strong>. Periódico mixto: anteperiodo
 41, periodo 6 ✓.</p>
 <p><strong>3 : 7.</strong> Parte entera 0, primer resto 3.</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Paso</th>
@@ -3491,12 +3510,12 @@ la fracción (método de restar)</h3>
 175/1000. Simplificamos: 175 = 5 · 5 · 7 y 1000 = 2 · 2 · 2 · 5 · 5 · 5.
 Dividimos entre 25: <strong>175/1000 = 7/40</strong>.</p>
 <p><strong>0,41(6)</strong> (periódico mixto). Llamamos x al número:</p>
-<pre class="pre-13"><code>        x =   0,41666…
+<pre class="no-partir pre-13"><code>        x =   0,41666…
      100x =  41,666…      (multiplicamos por 100: la coma salta el anteperiodo &quot;41&quot;)
     1000x = 416,666…      (multiplicamos por 1000: la coma salta además un periodo &quot;6&quot;)</code></pre>
 <p>Las dos últimas líneas tienen <strong>las mismas cifras
 decimales</strong> (666…), así que al restarlas desaparecen:</p>
-<pre class="pre-14"><code>    1000x − 100x = 416,666… − 41,666…
+<pre class="no-partir pre-14"><code>    1000x − 100x = 416,666… − 41,666…
             900x = 375
                x = 375/900</code></pre>
 <p>Simplificamos: 375 = 3 · 5³ y 900 = 2² · 3² · 5². El máximo común
@@ -3513,7 +3532,7 @@ cifras) = 900. Sale 375/900 = 5/12 ✓. Ahora ves de dónde sale la regla:
 es exactamente la resta 1000x − 100x.</p>
 <p><strong>0,(428571)</strong> (periódico puro, 6 cifras de
 periodo):</p>
-<pre class="pre-15"><code>          x =      0,428571428571…
+<pre class="no-partir pre-15"><code>          x =      0,428571428571…
     1000000x = 428571,428571…
     1000000x − x = 428571
          999999x = 428571
@@ -3532,8 +3551,7 @@ revés</strong>: dividir 3 entre 7 (como en (b)) y ver que sale
 0,(428571). Las dos direcciones (fracción → decimal y decimal →
 fracción) se comprueban mutuamente.</p>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s9"></a></p>
-<h2 id="9-ejemplo-avanzado-aplicado-a-tu-investigación">9. Ejemplo
+<h2 id="9-ejemplo-avanzado-aplicado-a-tu-investigación"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s9"></a>9. Ejemplo
 avanzado aplicado a tu investigación</h2>
 <blockquote>
 <p><strong>[EJEMPLO 1.3] ¿En qué «mundo de números» viven los códigos
@@ -3577,7 +3595,7 @@ class="pre-16 sourceCode python"><code class="sourceCode python"><span id="cb16-
 <p><strong>Entrada:</strong> ninguna (el programa no pide datos).<br />
 <strong>Salida obtenida</strong> al ejecutarlo realmente (Python
 3.13.16, 12/10/2026):</p>
-<pre class="pre-17"><code>0.30000000000000004
+<pre class="no-partir pre-17"><code>0.30000000000000004
 False
 3/10
 True
@@ -3639,7 +3657,7 @@ es <strong>siempre</strong> uno de los números 0, 1, …, 6. (Esto no es
 un ejemplo: es un razonamiento general, válido para cualesquiera a y
 b.)</p>
 <p>La tabla completa de ⊗ («multiplicar con reloj de 7») es:</p>
-<pre class="pre-18"><code> ⊗ │ 0 1 2 3 4 5 6
+<pre class="no-partir pre-18"><code> ⊗ │ 0 1 2 3 4 5 6
 ───┼───────────────
  0 │ 0 0 0 0 0 0 0
  1 │ 0 1 2 3 4 5 6
@@ -3653,7 +3671,7 @@ contiene los números 1, 2, 3, 4, 5, 6 exactamente una vez</strong>, solo
 que en distinto orden. En particular, <strong>en cada fila aparece el
 1</strong>. Eso significa que para cada número a ≠ 0 hay una «pareja» b
 con a ⊗ b = 1:</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>a</th>
@@ -3686,7 +3704,7 @@ mundo «reloj de 7», el número que multiplicado por 2 da 1 es el
 3 ✓, y en efecto 3 ⊗ 2 = 6 ✓.</p>
 <p><strong>Comparemos con el reloj de 6.</strong> Ahora S′ = {0, 1, 2,
 3, 4, 5} y operamos con restos de dividir entre 6:</p>
-<pre class="pre-19"><code> ⊗ │ 0 1 2 3 4 5        (reloj de 6)
+<pre class="no-partir pre-19"><code> ⊗ │ 0 1 2 3 4 5        (reloj de 6)
 ───┼─────────────
  0 │ 0 0 0 0 0 0
  1 │ 0 1 2 3 4 5
@@ -3726,8 +3744,7 @@ relacionado con una propiedad del número 3 en GF(7) que estudiarás en el
 capítulo 14.6 (<em>raíces primitivas</em>).</li>
 </ul>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s10"></a></p>
-<h2 id="10-errores-frecuentes">10. Errores frecuentes</h2>
+<h2 id="10-errores-frecuentes"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s10"></a>10. Errores frecuentes</h2>
 <table>
 <thead>
 <tr class="header">
@@ -3837,8 +3854,7 @@ exactamente b − 1 cifras».</td>
 </tbody>
 </table>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s11"></a></p>
-<h2 id="11-resumen-para-memorizar">11. Resumen para memorizar</h2>
+<h2 id="11-resumen-para-memorizar"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s11"></a>11. Resumen para memorizar</h2>
 <ol type="1">
 <li><strong>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</strong>; los irracionales están en ℝ pero no
 en ℚ. En este libro, 0 ∈ ℕ.</li>
@@ -3862,8 +3878,7 @@ enteros</strong>.</li>
 dividir sin salir de {0, …, 6}: eso es GF(7).</li>
 </ol>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s12"></a></p>
-<h2 id="12-tabla-de-fórmulas-y-propiedades">12. Tabla de fórmulas y
+<h2 id="12-tabla-de-fórmulas-y-propiedades"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s12"></a>12. Tabla de fórmulas y
 propiedades</h2>
 <table>
 <thead>
@@ -3982,8 +3997,7 @@ nulos)</td>
 </tbody>
 </table>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s13"></a></p>
-<h2 id="13-ejercicios-sin-resolver">13. Ejercicios sin resolver</h2>
+<h2 id="13-ejercicios-sin-resolver"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s13"></a>13. Ejercicios sin resolver</h2>
 <blockquote>
 <p><strong>Instrucciones.</strong> Hazlos en tu cuaderno, en orden. En
 cada uno, <strong>escribe el razonamiento</strong>, no solo el
@@ -4118,8 +4132,7 @@ d) Explica por qué, para responder, solo importa el
 e) Expresa 100 días en semanas como número decimal. ¿Qué relación hay
 entre la parte decimal y el resto del apartado b)?</p>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s14"></a></p>
-<h2 id="14-soluciones-razonadas">14. Soluciones razonadas</h2>
+<h2 id="14-soluciones-razonadas"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s14"></a>14. Soluciones razonadas</h2>
 <blockquote>
 <p>⚠️ Intenta cada ejercicio <strong>antes</strong> de abrir su
 solución. Si te equivocas, no basta con leer la solución: identifica
@@ -4127,7 +4140,7 @@ solución. Si te equivocas, no basta con leer la solución: identifica
 §16) y haz un ejercicio parecido.</p>
 </blockquote>
 <details>
-<summary>▶ Solución A1</summary>
+<summary>Solución A1</summary>
 
 <table>
 <thead>
@@ -4264,7 +4277,7 @@ escalera del Ejemplo 1.1.</p>
 </details>
 
 <details>
-<summary>▶ Solución A2</summary>
+<summary>Solución A2</summary>
 
 <p>a) <strong>Verdadero.</strong> Por definición, ℤ contiene a todos los
 naturales (Prop. 1.1).<br />
@@ -4283,11 +4296,11 @@ cosas a la vez.</p>
 </details>
 
 <details>
-<summary>▶ Solución A3</summary>
+<summary>Solución A3</summary>
 
 <p>Todas son irreducibles (compruébalo: numerador y denominador no
 tienen divisores comunes).</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fracción</th>
@@ -4341,7 +4354,7 @@ tienen divisores comunes).</p>
 </details>
 
 <details>
-<summary>▶ Solución A4</summary>
+<summary>Solución A4</summary>
 
 <p>a) <strong>0,45</strong> = 45/100 = <strong>9/20</strong> (dividiendo
 entre 5). Comprobación: 9/20 = 45/100 = 0,45 ✓.</p>
@@ -4364,7 +4377,7 @@ regla F9: (106 − 10)/90 = 96/90 ✓. Comprobación: 16 = 1·15 + 1; 10 =
 </details>
 
 <details>
-<summary>▶ Solución A5</summary>
+<summary>Solución A5</summary>
 
 <p>Pasamos todo a decimal: −2,5; 7/4 = 1,75; −√4 = −2; 0,(3) = 0,333…;
 −3/2 = −1,5; 1,7.</p>
@@ -4372,7 +4385,7 @@ regla F9: (106 − 10)/90 = 96/90 ✓. Comprobación: 16 = 1·15 + 1; 10 =
 7/4</strong></p>
 <p>Comprobación de las comparaciones delicadas: −2,5 &lt; −2 porque −2 −
 (−2,5) = 0,5 &gt; 0. 1,7 &lt; 1,75 porque 1,75 − 1,7 = 0,05 &gt; 0.</p>
-<pre class="pre-20"><code>   −3      −2      −1       0       1       2
+<pre class="no-partir pre-20"><code>   −3      −2      −1       0       1       2
 ────┼───────┼───────┼───────┼───────┼───────┼────►
         ▲   ▲   ▲              ▲          ▲▲
       −2,5  │  −3/2          0,(3)     1,7 7/4
@@ -4380,7 +4393,7 @@ regla F9: (106 − 10)/90 = 96/90 ✓. Comprobación: 16 = 1·15 + 1; 10 =
 </details>
 
 <details>
-<summary>▶ Solución A6</summary>
+<summary>Solución A6</summary>
 
 <p>a) <strong>Verdadera.</strong> Multiplicar naturales es sumar
 repetidamente naturales (3 · 4 = 4 + 4 + 4), y sumar naturales da un
@@ -4397,7 +4410,7 @@ entonces √2 = (−a)/b sería racional, lo que contradice el Teorema
 </details>
 
 <details>
-<summary>▶ Solución B1</summary>
+<summary>Solución B1</summary>
 
 <p><strong>Punto medio:</strong> (3/7 + 4/9)/2. Denominador común 63:
 3/7 = 27/63 y 4/9 = 28/63. Suma: 55/63. Mitad:
@@ -4415,10 +4428,10 @@ el anterior). Es la Propiedad 1.3 aplicada una y otra vez.</p>
 </details>
 
 <details>
-<summary>▶ Solución B2</summary>
+<summary>Solución B2</summary>
 
 <p><strong>Simplificar primero</strong> (Error E9):</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fracción</th>
@@ -4465,7 +4478,7 @@ el anterior). Es la Propiedad 1.3 aplicada una y otra vez.</p>
 </details>
 
 <details>
-<summary>▶ Solución B3</summary>
+<summary>Solución B3</summary>
 
 <p>(a) <strong>Método 1 (restar):</strong> x = 0,999…, 10x = 9,999…, 9x
 = 9, x = 1.<br />
@@ -4489,7 +4502,7 @@ demostración anterior ya lo prueba para todas.</p>
 </details>
 
 <details>
-<summary>▶ Solución B4</summary>
+<summary>Solución B4</summary>
 
 <p>(a) Al dividir entre 13 los restos posibles son 0, 1, …, 12. Si en
 algún momento saliera el resto 0, la división terminaría y no habría
@@ -4497,7 +4510,7 @@ periodo. Si no sale, solo quedan 12 restos posibles (1, …, 12) y, por la
 Propiedad 1.4, el periodo tiene <strong>como mucho 12
 cifras</strong>.</p>
 <p>(b)</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Paso</th>
@@ -4565,7 +4578,7 @@ exista un código que llegue.</p>
 </details>
 
 <details>
-<summary>▶ Solución B5</summary>
+<summary>Solución B5</summary>
 
 <p>(a) <strong>Sí</strong>, la conclusión es verdadera: √2 es irracional
 (Teorema 1.1).<br />
@@ -4588,7 +4601,7 @@ evidencia de un récord demostrado (Módulos 25 y 28).</p>
 </details>
 
 <details>
-<summary>▶ Solución B6</summary>
+<summary>Solución B6</summary>
 
 <p>a) x = 4 − 9 = −5 → <strong>ℤ</strong> (no hay solución en ℕ).<br />
 b) x = 5/3 → <strong>ℚ</strong> (3 no divide a 5: no hay solución
@@ -4601,12 +4614,12 @@ f) 2x = −3, x = −3/2 → <strong>ℚ</strong>.</p>
 </details>
 
 <details>
-<summary>▶ Solución C1</summary>
+<summary>Solución C1</summary>
 
 <p><strong>Datos</strong> (1/13 ya lo calculaste en B4; 1/7 tiene un
 periodo de la misma longitud que el de 3/7, calculado en el Ejemplo
 1.2):</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>p</th>
@@ -4684,11 +4697,11 @@ capítulo 10.10).</p>
 </details>
 
 <details>
-<summary>▶ Solución C2</summary>
+<summary>Solución C2</summary>
 
 <p><strong>Tablas</strong> (solo filas y columnas 1 a n − 1, porque el 0
 nunca tiene pareja: 0 ⊗ b = 0):</p>
-<pre class="pre-21"><code> n = 4          n = 5            n = 6              n = 8
+<pre class="no-partir pre-21"><code> n = 4          n = 5            n = 6              n = 8
  ⊗ │ 1 2 3      ⊗ │ 1 2 3 4      ⊗ │ 1 2 3 4 5      ⊗ │ 1 2 3 4 5 6 7
 ───┼──────     ───┼────────     ───┼──────────     ───┼──────────────
  1 │ 1 2 3      1 │ 1 2 3 4      1 │ 1 2 3 4 5      1 │ 1 2 3 4 5 6 7
@@ -4740,7 +4753,7 @@ apoyada</strong> para ti, aunque sea un teorema conocido.</p>
 </details>
 
 <details>
-<summary>▶ Solución P1</summary>
+<summary>Solución P1</summary>
 
 <p>a) De −3 a 5: 5 − (−3) = 5 + 3 = <strong>8 plantas</strong>. De 4 a
 −2: el cambio es −2 − 4 = <strong>−6</strong> (6 plantas hacia
@@ -4759,7 +4772,7 @@ horas.</p>
 </details>
 
 <details>
-<summary>▶ Solución P2</summary>
+<summary>Solución P2</summary>
 
 <p>a) 10 · 0,10 = <strong>1,00 €</strong>.</p>
 <p>b) El ordenador no guarda 0,1 exactamente, sino una aproximación (en
@@ -4789,7 +4802,7 @@ verificables.</p>
 </details>
 
 <details>
-<summary>▶ Solución PC</summary>
+<summary>Solución PC</summary>
 
 <p>Numeramos: lunes = 0, martes = 1, miércoles = 2, jueves = 3, viernes
 = 4, sábado = 5, domingo = 6.</p>
@@ -4817,8 +4830,7 @@ resto 2 inicial. En general: a/7 = cociente + resto/7.</p>
 </details>
 
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s15"></a></p>
-<h2 id="15-preguntas-de-comprensión">15. Preguntas de comprensión</h2>
+<h2 id="15-preguntas-de-comprensión"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s15"></a>15. Preguntas de comprensión</h2>
 <p>Responde con tus palabras, en 2–5 líneas cada una. No son cálculos:
 son para comprobar que <strong>entiendes</strong>. Las respuestas modelo
 están en el anexo final.</p>
@@ -4841,8 +4853,7 @@ escriben distinto». ¿Qué le responderías?</li>
 <li>¿Qué tiene de especial el «reloj de 7» frente al «reloj de 6»?</li>
 </ol>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s16"></a></p>
-<h2 id="16-prueba-de-dominio">16. Prueba de dominio</h2>
+<h2 id="16-prueba-de-dominio"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s16"></a>16. Prueba de dominio</h2>
 <p><strong>Instrucciones:</strong> sin mirar el capítulo ni las
 soluciones. Tiempo recomendado: 40 minutos. Cada pregunta vale 1 punto.
 Las preguntas marcadas con ★ son <strong>críticas</strong>.</p>
@@ -4963,8 +4974,7 @@ es entero.»<br />
 −0,33.</p>
 <p>(Soluciones en el anexo final.)</p>
 <hr />
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s17"></a></p>
-<h2 id="17-relación-con-el-siguiente-capítulo">17. Relación con el
+<h2 id="17-relación-con-el-siguiente-capítulo"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--s17"></a>17. Relación con el
 siguiente capítulo</h2>
 <p>En este capítulo has visto <strong>qué números existen</strong> y
 <strong>por qué</strong>. En el <strong>capítulo 1.2 (Números enteros:
@@ -4999,9 +5009,8 @@ comprensión y las he comparado con las respuestas modelo.</label></li>
 <hr />
 <h2 id="ampliaciones-opcionales-en-una-primera-lectura">Ampliaciones
 (opcionales en una primera lectura)</h2>
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampA"></a></p>
 <h3
-id="ampliación-a--demostración-de-que-2-es-irracional-teorema-11">Ampliación
+id="ampliación-a--demostración-de-que-2-es-irracional-teorema-11"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampA"></a>Ampliación
 A — Demostración de que √2 es irracional (Teorema 1.1)</h3>
 <p><strong>Idea del método (reducción al absurdo).</strong> Suponemos lo
 <strong>contrario</strong> de lo que queremos demostrar y deducimos,
@@ -5045,8 +5054,7 @@ falsa: <strong>√2 es irracional</strong>. Observa que esta demostración
 vale para <strong>todas</strong> las fracciones a la vez, cosa que
 ningún programa de ordenador puede hacer probando casos (ejercicio
 B5).</p>
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampB"></a></p>
-<h3 id="ampliación-b--qué-es-realmente-ℝ">Ampliación B — ¿Qué es
+<h3 id="ampliación-b--qué-es-realmente-ℝ"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampB"></a>Ampliación B — ¿Qué es
 realmente ℝ?</h3>
 <p>La Definición 1.6 («los números que se escriben con un decimal») es
 intuitiva, pero esconde preguntas difíciles: ¿cómo se suman dos
@@ -5060,9 +5068,8 @@ sobre GF(7) viven en conjuntos <strong>finitos</strong>. Los números
 reales aparecerán solo de forma auxiliar: al comparar tamaños
 (logaritmos, capítulo 4.5) y en algunas cotas asintóticas (Módulo
 21).</p>
-<p><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampC"></a></p>
 <h3
-id="ampliación-c--por-qué-01-no-es-exacto-en-el-ordenador">Ampliación C
+id="ampliación-c--por-qué-01-no-es-exacto-en-el-ordenador"><a id="doc-libro-parte-1-fundamentos-eso-modulo-01-numeros-y-operaciones-cap-1-1-conjuntos-de-numeros--ampC"></a>Ampliación C
 — ¿Por qué 0,1 no es exacto en el ordenador?</h3>
 <p>En base 10, una fracción irreducible da un decimal exacto solo si su
 denominador tiene únicamente los factores primos de 10, que son 2 y 5
@@ -5091,7 +5098,7 @@ id="anexo--respuestas-de-comprensión-prueba-de-dominio-y-refuerzo">Anexo
 completa.</p>
 </blockquote>
 <details>
-<summary>▶ Respuestas modelo de las preguntas de comprensión (§15)</summary>
+<summary>Respuestas modelo de las preguntas de comprensión (§15)</summary>
 
 <ol type="1">
 <li>Porque ℚ es cerrado para la división (Prop. 1.2): el cociente de dos
@@ -5132,7 +5139,7 @@ diferencia es que 7 es primo y 6 no.</li>
 </details>
 
 <details>
-<summary>▶ Soluciones de la prueba de dominio (§16)</summary>
+<summary>Soluciones de la prueba de dominio (§16)</summary>
 
 <p><strong>D1 ★.</strong> −7/7 = −1 → ℤ (y ℚ, ℝ; no ℕ). √49/2 = 7/2 → ℚ
 (no ℤ). 0,1(23) → periódico → ℚ. √3 → 3 no es cuadrado perfecto → 𝕀.
@@ -5176,7 +5183,7 @@ cifras</strong> (Prop. 1.4). (De hecho, para 1/17 tiene exactamente
 </details>
 
 <details>
-<summary>▶ Soluciones de los ejercicios de refuerzo</summary>
+<summary>Soluciones de los ejercicios de refuerzo</summary>
 
 <p><strong>RF1.</strong> −20/5 = −4 → ℤ. 0,0(5) → periódico → ℚ (es
 1/18). √50 → 49 &lt; 50 &lt; 64, no es cuadrado perfecto → 𝕀. √0,25 =
@@ -5232,20 +5239,19 @@ sesión.</em></li>
 </ul>
 <p>Todas las afirmaciones «verificadas por programa» de este capítulo se
 pueden reproducir ejecutando:</p>
-<pre class="pre-22"><code>python3 codigo/verificaciones/verificar_cap_1_1.py</code></pre>
+<pre class="no-partir pre-22"><code>python3 codigo/verificaciones/verificar_cap_1_1.py</code></pre>
 <hr />
 <h2 id="registro-personal-del-capítulo-11">Registro personal del
 capítulo 1.1</h2>
 <p>Copia esta ficha en <code>PROGRESO.md</code> cuando termines:</p>
-<pre class="pre-23"><code>Capítulo 1.1 — Conjuntos de números
+<pre class="no-partir pre-23"><code>Capítulo 1.1 — Conjuntos de números
 Fecha de inicio:                Fecha de la prueba de dominio:
 Puntuación prueba de dominio:  __/10    ¿Todas las ★ correctas? Sí / No
 Ejercicios hechos:  A1 A2 A3 A4 A5 A6 | B1 B2 B3 B4 B5 B6 | C1 C2 | P1 P2 PC
 Ejercicios fallados y concepto:
 Preguntas de comprensión que me costaron:
 ¿Dominado?  Sí / No (repetir prueba el día: ______)</code></pre>
-<p><a id="doc-apendices-glosario"></a></p>
-<h1 id="apéndice-a--glosario">Apéndice A — Glosario</h1>
+<h1 id="apéndice-a--glosario"><a id="doc-apendices-glosario"></a>Apéndice A — Glosario</h1>
 <blockquote>
 <p>El glosario <strong>crece con cada capítulo</strong>. Cada término
 indica el capítulo donde se define. Los términos marcados con
@@ -5469,8 +5475,7 @@ B.</td>
 </tr>
 </tbody>
 </table>
-<p><a id="doc-apendices-hoja-de-formulas"></a></p>
-<h1 id="apéndice-b--hoja-de-fórmulas">Apéndice B — Hoja de fórmulas</h1>
+<h1 id="apéndice-b--hoja-de-fórmulas"><a id="doc-apendices-hoja-de-formulas"></a>Apéndice B — Hoja de fórmulas</h1>
 <blockquote>
 <p>Crece con cada capítulo. Cada fórmula indica sus
 <strong>condiciones</strong> (cuándo se puede usar) y su
@@ -5601,8 +5606,7 @@ entre 7</td>
 </tr>
 </tbody>
 </table>
-<p><a id="doc-apendices-errores-frecuentes"></a></p>
-<h1 id="apéndice-c--errores-frecuentes-y-cómo-corregirlos">Apéndice C —
+<h1 id="apéndice-c--errores-frecuentes-y-cómo-corregirlos"><a id="doc-apendices-errores-frecuentes"></a>Apéndice C —
 Errores frecuentes y cómo corregirlos</h1>
 <blockquote>
 <p>Lista acumulada de todos los capítulos. Para cada error: qué se hace
@@ -5720,8 +5724,7 @@ versión.</td>
 </tr>
 </tbody>
 </table>
-<p><a id="doc-apendices-bibliografia"></a></p>
-<h1 id="apéndice-d--bibliografía-comentada">Apéndice D — Bibliografía
+<h1 id="apéndice-d--bibliografía-comentada"><a id="doc-apendices-bibliografia"></a>Apéndice D — Bibliografía
 comentada</h1>
 <blockquote>
 <p><strong>Regla de honestidad:</strong> cada referencia indica su
@@ -5732,7 +5735,7 @@ y compruébala tú mismo</strong> (autores, título, año, páginas).
 Aprender a hacerlo forma parte del Módulo 28.</p>
 </blockquote>
 <p><strong>Leyenda de estado</strong></p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Estado</th>
@@ -5922,7 +5925,7 @@ sesión).</li>
 </ol>
 <hr />
 <h2 id="fuentes-por-capítulo">Fuentes por capítulo</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Capítulo</th>
@@ -5940,7 +5943,7 @@ Real Decreto 217/2022 (23). Todos los cálculos: verificados con
 </table>
 <h2 id="registro-de-verificaciones-de-fuentes">Registro de
 verificaciones de fuentes</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fecha</th>
@@ -5990,8 +5993,7 @@ confirmados.</td>
 </tr>
 </tbody>
 </table>
-<p><a id="doc-PROGRESO"></a></p>
-<h1 id="registro-de-progreso">Registro de progreso</h1>
+<h1 id="registro-de-progreso"><a id="doc-PROGRESO"></a>Registro de progreso</h1>
 <blockquote>
 <p>Este archivo tiene <strong>dos registros separados</strong>, porque
 escribir un capítulo y dominarlo son cosas distintas:</p>
@@ -6008,7 +6010,7 @@ actualizas tú, o tu tutor con tus resultados).</li>
 <h2 id="1-índice-general-resumen">1. Índice general (resumen)</h2>
 <p>El índice completo, con enlaces, está en <a
 href="#doc-libro-00-indice-general"><code>libro/00-indice-general.md</code></a>.</p>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Parte</th>
@@ -6070,7 +6072,7 @@ href="#doc-libro-00-indice-general"><code>libro/00-indice-general.md</code></a>.
 </table>
 <hr />
 <h2 id="2-registro-de-redacción">2. Registro de redacción</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Campo</th>
@@ -6113,7 +6115,7 @@ comprobación del criterio del denominador en 124 750 fracciones).</td>
 </tbody>
 </table>
 <h3 id="entregas">Entregas</h3>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Entrega</th>
@@ -6382,7 +6384,7 @@ aprendizaje (lo rellenas tú)</h2>
 <strong>Capítulo que estoy estudiando:</strong> 1.1<br />
 <strong>Próximo capítulo a estudiar:</strong> 1.1 → después 1.2</p>
 <h3 id="51-estado-por-capítulo">5.1. Estado por capítulo</h3>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Capítulo</th>
@@ -6405,7 +6407,7 @@ aprendizaje (lo rellenas tú)</h2>
 </tbody>
 </table>
 <h3 id="52-ejercicios-realizados">5.2. Ejercicios realizados</h3>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Capítulo</th>
@@ -6424,7 +6426,7 @@ aprendizaje (lo rellenas tú)</h2>
 </tbody>
 </table>
 <h3 id="53-errores-que-debo-repasar">5.3. Errores que debo repasar</h3>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fecha</th>
@@ -6448,7 +6450,7 @@ aprendizaje (lo rellenas tú)</h2>
 </table>
 <h3 id="54-módulos-completados-y-pendientes-de-repaso">5.4. Módulos
 completados y pendientes de repaso</h3>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Módulo</th>
@@ -6466,12 +6468,11 @@ completados y pendientes de repaso</h3>
 </tr>
 </tbody>
 </table>
-<p><a id="doc-codigo-README"></a></p>
-<h1 id="código-del-libro">Código del libro</h1>
+<h1 id="código-del-libro"><a id="doc-codigo-README"></a>Código del libro</h1>
 <p>Todos los programas usan <strong>solo la biblioteca estándar de
 Python 3</strong>. No hay que instalar nada más.</p>
 <h2 id="carpetas">Carpetas</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Carpeta</th>
@@ -6497,14 +6498,14 @@ independiente</strong> todos los resultados numéricos del capítulo
 matrices, rango, distancia mínima) y sus pruebas unitarias.</p>
 <h2 id="cómo-ejecutar">Cómo ejecutar</h2>
 <p>Desde la carpeta raíz del repositorio:</p>
-<pre class="pre-24"><code>python3 codigo/ejemplos/cap_1_1_rincon_del_ordenador.py
+<pre class="no-partir pre-24"><code>python3 codigo/ejemplos/cap_1_1_rincon_del_ordenador.py
 python3 codigo/verificaciones/verificar_cap_1_1.py</code></pre>
 <p>Si un programa de verificación termina con
 <code>TODAS LAS COMPROBACIONES SUPERADAS</code>, los cálculos del
 capítulo coinciden con el segundo procedimiento. Si alguno falla, el
 programa se detiene e indica qué cálculo no coincide.</p>
 <h2 id="registro-de-ejecuciones">Registro de ejecuciones</h2>
-<table>
+<table class="no-partir">
 <thead>
 <tr class="header">
 <th>Fecha</th>
@@ -6547,9 +6548,8 @@ programas del libro</h1>
 poder leerlos sin conexión. Para ejecutarlos, usa los archivos
 <code>.py</code> del ZIP (no copies desde el PDF: los saltos de línea y
 espacios podrían alterarse).</p>
-<p><a id="doc-codigo-ejemplos-cap_1_1_rincon_del_ordenador"></a></p>
 <h2
-id="codigoejemploscap_1_1_rincon_del_ordenadorpy"><code>codigo/ejemplos/cap_1_1_rincon_del_ordenador.py</code></h2>
+id="codigoejemploscap_1_1_rincon_del_ordenadorpy"><a id="doc-codigo-ejemplos-cap_1_1_rincon_del_ordenador"></a><code>codigo/ejemplos/cap_1_1_rincon_del_ordenador.py</code></h2>
 <div class="sourceCode" id="cb25"><pre
 class="pre-25 sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rincón del ordenador — Capítulo 1.1</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Objetivo: ver con tus propios ojos que los decimales del ordenador (float)</span></span>
@@ -6565,9 +6565,8 @@ class="pre-25 sourceCode python"><code class="sourceCode python"><span id="cb25-
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="dv">4</span> <span class="op">+</span> <span class="dv">5</span>) <span class="op">%</span> <span class="dv">7</span>)            <span class="co"># suma &quot;con reloj de 7&quot;: resto de dividir 9 entre 7</span></span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="dv">3</span> <span class="op">*</span> <span class="dv">5</span>) <span class="op">%</span> <span class="dv">7</span>)            <span class="co"># producto &quot;con reloj de 7&quot;: resto de dividir 15 entre 7</span></span></code></pre></div>
-<p><a id="doc-codigo-verificaciones-verificar_cap_1_1"></a></p>
 <h2
-id="codigoverificacionesverificar_cap_1_1py"><code>codigo/verificaciones/verificar_cap_1_1.py</code></h2>
+id="codigoverificacionesverificar_cap_1_1py"><a id="doc-codigo-verificaciones-verificar_cap_1_1"></a><code>codigo/verificaciones/verificar_cap_1_1.py</code></h2>
 <div class="sourceCode" id="cb26"><pre
 class="pre-26 sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
@@ -6950,16 +6949,26 @@ class="pre-26 sourceCode python"><code class="sourceCode python"><span id="cb26-
 <span id="cb26-379"><a href="#cb26-379" aria-hidden="true" tabindex="-1"></a>    comprobar_raiz_de_2_sin_denominador_pequeno()</span>
 <span id="cb26-380"><a href="#cb26-380" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">TODAS LAS COMPROBACIONES SUPERADAS&quot;</span>)</span></code></pre></div>
 
-<button class="boton-soluciones" id="boton-soluciones" type="button">Desplegar todas las soluciones</button>
+<button class="boton-soluciones" id="boton-soluciones" type="button"></button>
 <script>
 (function () {
   var b = document.getElementById('boton-soluciones');
-  var abiertas = false;
+  var ds = Array.prototype.slice.call(document.querySelectorAll('details'));
+  if (!ds.length) { b.style.display = 'none'; return; }
+  function hayCerradas() { return ds.some(function (d) { return !d.open; }); }
+  function actualizar() {
+    var abrir = hayCerradas();
+    b.innerHTML = abrir
+      ? '<span class="boton-largo">Desplegar todas las soluciones</span><span class="boton-corto">Soluciones ▼</span>'
+      : '<span class="boton-largo">Plegar todas las soluciones</span><span class="boton-corto">Soluciones ▲</span>';
+  }
   b.addEventListener('click', function () {
-    abiertas = !abiertas;
-    document.querySelectorAll('details').forEach(function (d) { d.open = abiertas; });
-    b.textContent = abiertas ? 'Plegar todas las soluciones' : 'Desplegar todas las soluciones';
+    var abrir = hayCerradas();
+    ds.forEach(function (d) { d.open = abrir; });
+    actualizar();
   });
+  ds.forEach(function (d) { d.addEventListener('toggle', actualizar); });
+  actualizar();
 })();
 </script>
 </body>

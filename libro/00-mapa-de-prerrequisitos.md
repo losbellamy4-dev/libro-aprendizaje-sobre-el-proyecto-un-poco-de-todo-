@@ -1,9 +1,7 @@
 # Mapa de prerrequisitos y orden de estudio
 
 > Este documento responde a tres preguntas: **¿qué necesito saber antes de cada módulo?**,
->
 > **¿falta algún prerrequisito en el temario?** y **¿en qué orden conviene estudiar?**
->
 > Vuelve a él cada vez que empieces un módulo nuevo.
 
 ---

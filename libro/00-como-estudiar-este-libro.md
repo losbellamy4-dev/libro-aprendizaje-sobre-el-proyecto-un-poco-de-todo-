@@ -28,7 +28,7 @@
 **Consejos prácticos:**
 
 - Estudia con **papel y lápiz**. Las matemáticas se aprenden haciendo, no leyendo.
-- Las soluciones están **plegadas** (en GitHub aparecen como «▶ Ver solución»). Ábrelas solo después de intentarlo de verdad. Equivocarse y descubrir por qué es la parte del estudio que más enseña.
+- Las soluciones están **plegadas** (en GitHub y en la versión HTML aparecen como recuadros cerrados con un triángulo, por ejemplo «Solución A1»; en el PDF aparecen abiertos, y conviene taparlos con un papel). Ábrelas solo después de intentarlo de verdad. Equivocarse y descubrir por qué es la parte del estudio que más enseña.
 - Lleva un **cuaderno de errores**: para cada error, escribe (1) qué hiciste, (2) por qué estaba mal, (3) qué concepto fallaba, (4) un ejercicio parecido resuelto bien.
 - Haz la prueba de dominio **otro día**, no justo después de estudiar: así compruebas lo que recuerdas de verdad.
 

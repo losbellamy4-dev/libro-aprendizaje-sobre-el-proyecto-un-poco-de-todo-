@@ -14,7 +14,7 @@
 | ★ | **Núcleo**: imprescindible para entender y desarrollar tu investigación. |
 | ◇ | **Ampliación**: recomendable, pero no bloquea el avance hacia el proyecto. |
 | [+] | **Añadido** al temario original porque es un prerrequisito que faltaba (justificación en el mapa de prerrequisitos). |
-| ✅ / ⏳ | Redactado / pendiente de redactar. |
+| ✅ / ⏳ | Redactado / pendiente de redactar. |
 | R*n* | Repaso acumulativo. |
 | EP-*X* | Examen acumulativo y prueba de dominio de la Parte *X*. |
 

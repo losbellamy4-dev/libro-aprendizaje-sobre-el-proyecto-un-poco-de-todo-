@@ -146,17 +146,18 @@ def portada(entrega, fecha, version_pdf):
     hechos, total = contar_capitulos()
     nota_soluciones = (
         "En esta versión <b>PDF</b> las soluciones aparecen <b>desplegadas</b> en recuadros "
-        "titulados «▶ Ver solución». Tápalas con un papel y no las mires hasta haber "
-        "intentado cada ejercicio."
+        "titulados «▼ Solución A1», «▼ Solución A2»… Tápalas con un papel y no las mires "
+        "hasta haber intentado cada ejercicio."
         if version_pdf else
-        "En esta versión <b>HTML</b> las soluciones están <b>plegadas</b>: pulsa «▶ Ver solución» "
-        "solo después de intentar cada ejercicio. Funciona sin conexión a Internet."
+        "En esta versión <b>HTML</b> las soluciones están <b>plegadas</b> en recuadros "
+        "«▶ Solución A1», «▶ Solución A2»…: púlsalos solo después de intentar cada ejercicio. "
+        "Funciona sin conexión a Internet."
     )
     return f"""
 <section class="portada">
   <p class="portada-serie">Curso-libro de estudio</p>
   <h1 class="portada-titulo">Matemáticas, programación<br>y teoría de códigos</h1>
-  <p class="portada-sub">De 3.º de ESO a la investigación sobre<br>códigos lineales sobre GF(7)</p>
+  <p class="portada-sub">De 3.º de ESO a la investigación<br>sobre códigos lineales sobre GF(7)</p>
   <div class="portada-caja">
     <p><b>Edición: Entrega {entrega}</b> · generada el {fecha}</p>
     <p><b>Estado del libro:</b> {hechos} de {total} capítulos redactados. Este documento contiene
@@ -175,7 +176,7 @@ def portada(entrega, fecha, version_pdf):
 CSS = r"""
 :root { --tinta:#1d2430; --suave:#5b6474; --acento:#1f5fa8; --fondo-codigo:#f4f6f9;
         --borde:#d5dbe3; --caja:#f3f7fd; --aviso:#fff8e6; }
-html { font-size: 11pt; }
+html { font-size: 16px; }
 body { font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif; color: var(--tinta);
        line-height: 1.5; max-width: 52em; margin: 0 auto; padding: 1.5em 1.2em 4em;
        background: #fff; hyphens: auto; }
@@ -195,8 +196,12 @@ code { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size:
 pre { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; background: var(--fondo-codigo);
       border: 1px solid var(--borde); border-radius: 6px; padding: .7em .8em; line-height: 1.25;
       overflow-x: auto; white-space: pre; }
-pre code { background: none; padding: 0; font-size: 1em; }
-div.sourceCode { margin: 1em 0; }
+pre code, pre > code, pre > code.sourceCode { background: none; padding: 0; font-size: 1em;
+       white-space: pre !important; overflow-wrap: normal; word-break: normal; }
+pre { font-size: .82em; }
+div.sourceCode { margin: 1em 0; overflow: visible !important; background: none; }
+pre.sourceCode { overflow-x: auto !important; margin: 0; }
+pre > code.sourceCode > span { text-indent: 0 !important; padding-left: 0 !important; }
 pre a { color: inherit; }
 table { border-collapse: collapse; margin: 1em 0; font-size: .92em; width: auto; max-width: 100%; }
 th, td { border: 1px solid var(--borde); padding: .3em .55em; vertical-align: top; }
@@ -207,7 +212,12 @@ tr { break-inside: avoid; }
 details { border: 1px solid var(--borde); border-radius: 6px; margin: .8em 0; padding: .2em .9em;
           background: #fcfcfd; }
 details[open] { padding-bottom: .6em; }
-summary { cursor: pointer; font-weight: bold; color: var(--acento); padding: .35em 0; }
+summary { cursor: pointer; font-weight: bold; color: var(--acento); padding: .35em 0;
+          list-style: none; display: block; }
+summary::-webkit-details-marker { display: none; }
+summary::marker { content: ""; }
+summary::before { content: "▶ "; font-size: .85em; }
+details[open] > summary::before { content: "▼ "; }
 hr { border: none; border-top: 1px solid var(--borde); margin: 2em 0; }
 nav#TOC { border: 1px solid var(--borde); border-radius: 8px; padding: .5em 1.2em 1em; background: #fbfcfe; }
 nav#TOC > ul { padding-left: 1em; }
@@ -222,9 +232,29 @@ nav#TOC > ul > li > a { font-weight: bold; }
 .portada-caja { text-align: left; margin: 2.5em auto 1.5em; max-width: 36em; background: var(--caja);
        border: 1px solid var(--borde); border-radius: 10px; padding: .6em 1.4em; }
 .portada-pie { color: var(--suave); font-size: .85em; margin-top: 2em; }
-.boton-soluciones { position: fixed; right: 1em; bottom: 1em; background: var(--acento); color: #fff;
-       border: none; border-radius: 20px; padding: .6em 1em; font-size: .9em; cursor: pointer;
-       box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+.boton-soluciones { position: fixed; right: .8em; bottom: .8em; background: var(--acento); color: #fff;
+       border: none; border-radius: 20px; padding: .55em .95em; font-size: .85em; cursor: pointer;
+       box-shadow: 0 2px 6px rgba(0,0,0,.25); opacity: .9; }
+.boton-corto { display: none; }
+@media screen and (max-width: 600px) {
+  body { font-size: 1em; padding: 1em .9em 4em; }
+  h1 { font-size: 1.6em; }
+  .portada-titulo { font-size: 2em; }
+  table { display: block; overflow-x: auto; font-size: .82em;
+    background:
+      linear-gradient(to right, #fff 30%, rgba(255,255,255,0)),
+      linear-gradient(to right, rgba(255,255,255,0), #fff 70%) 100% 0,
+      radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.22), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.22), rgba(0,0,0,0)) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll; }
+  th, td { padding: .2em .35em; }
+  tr:nth-child(even) td { background: transparent; }
+  .boton-soluciones { opacity: .8; padding: .45em .8em; }
+  .boton-largo { display: none; }
+  .boton-corto { display: inline; }
+}
 
 @media print {
   html { font-size: 10pt; }
@@ -233,10 +263,12 @@ nav#TOC > ul > li > a { font-weight: bold; }
   h1 { break-before: page; }
   .portada { break-after: page; padding-top: 6em; }
   .portada-titulo { break-before: avoid; }
-  nav#TOC { break-after: page; border: none; background: none; padding: 0; }
+  nav#TOC { border: none; background: none; padding: 0; }
   details { break-inside: auto; }
-  summary { list-style: none; }
-  summary::-webkit-details-marker { display: none; }
+  summary { break-after: avoid; }
+  .no-partir { break-inside: avoid; }
+  pre > code.sourceCode { white-space: pre !important; }
+  pre > code.sourceCode > span { text-indent: 0 !important; padding-left: 0 !important; display: inline; }
   .boton-soluciones { display: none; }
   a { color: var(--acento); }
 }
@@ -247,16 +279,26 @@ nav#TOC > ul > li > a { font-weight: bold; }
 """
 
 BOTON_JS = """
-<button class="boton-soluciones" id="boton-soluciones" type="button">Desplegar todas las soluciones</button>
+<button class="boton-soluciones" id="boton-soluciones" type="button"></button>
 <script>
 (function () {
   var b = document.getElementById('boton-soluciones');
-  var abiertas = false;
+  var ds = Array.prototype.slice.call(document.querySelectorAll('details'));
+  if (!ds.length) { b.style.display = 'none'; return; }
+  function hayCerradas() { return ds.some(function (d) { return !d.open; }); }
+  function actualizar() {
+    var abrir = hayCerradas();
+    b.innerHTML = abrir
+      ? '<span class="boton-largo">Desplegar todas las soluciones</span><span class="boton-corto">Soluciones ▼</span>'
+      : '<span class="boton-largo">Plegar todas las soluciones</span><span class="boton-corto">Soluciones ▲</span>';
+  }
   b.addEventListener('click', function () {
-    abiertas = !abiertas;
-    document.querySelectorAll('details').forEach(function (d) { d.open = abiertas; });
-    b.textContent = abiertas ? 'Plegar todas las soluciones' : 'Desplegar todas las soluciones';
+    var abrir = hayCerradas();
+    ds.forEach(function (d) { d.open = abrir; });
+    actualizar();
   });
+  ds.forEach(function (d) { d.addEventListener('toggle', actualizar); });
+  actualizar();
 })();
 </script>
 """
@@ -293,6 +335,32 @@ def ajustar_bloques_de_codigo(html_texto):
     nuevo = re.sub(r"(<pre[^>]*>)(.*?)</pre>", cambiar, html_texto, flags=re.S)
     estilo = "<style>\n@media print {\n" + "\n".join(reglas) + "\n}\n</style>\n</head>"
     return nuevo.replace("</head>", estilo, 1)
+
+
+def anclas_en_titulos(html_texto):
+    """Mete el ancla de cada documento dentro de su primer título, en lugar de dejarla
+    en un párrafo vacío (que en el PDF podía provocar una página en blanco)."""
+    return re.sub(r'<p><a id="([^"]+)"></a></p>\s*<h([1-6])([^>]*)>',
+                  lambda m: f'<h{m.group(2)}{m.group(3)}><a id="{m.group(1)}"></a>', html_texto)
+
+
+def marcar_bloques_cortos(html_texto, max_filas=10, max_lineas=40):
+    """Marca las tablas y bloques de código cortos para que, al imprimir, no se
+    partan entre dos páginas (los largos sí pueden partirse: no caben en una)."""
+    def tabla(m):
+        filas = m.group(0).count("<tr")
+        if filas <= max_filas:
+            return m.group(0).replace("<table", '<table class="no-partir"', 1) if 'class="' not in m.group(1) \
+                else m.group(0).replace('class="', 'class="no-partir ', 1)
+        return m.group(0)
+    html_texto = re.sub(r"<table([^>]*)>.*?</table>", tabla, html_texto, flags=re.S)
+
+    def bloque(m):
+        lineas = m.group(0).count("\n")
+        if lineas <= max_lineas:
+            return m.group(0).replace('<pre class="', '<pre class="no-partir ', 1)
+        return m.group(0)
+    return re.sub(r"<pre class=\"[^\"]*\">.*?</pre>", bloque, html_texto, flags=re.S)
 
 
 def abrir_soluciones(html_texto):
@@ -350,7 +418,9 @@ def main():
                 orden += ["-A", os.path.join(tmp, "boton.html")]
             subprocess.run(orden, check=True)
             texto = open(ruta_html, encoding="utf-8").read()
+            texto = anclas_en_titulos(texto)
             texto = ajustar_bloques_de_codigo(texto)
+            texto = marcar_bloques_cortos(texto)
             if version_pdf:
                 texto = abrir_soluciones(texto)
             open(ruta_html, "w", encoding="utf-8").write(texto)
